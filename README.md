@@ -1,6 +1,24 @@
-# JhoomMusic - Telegram Music Bot
+<div align="center">
+  <img src="images/file-HYLKSWrPaUzdU9vvnyxGif.webp" alt="JhoomMusic Banner" width="100%">
+  
+  <h1>🎵 JhoomMusic - Telegram Music Bot</h1>
+  
+  <p><strong>A powerful Telegram music bot that can play high-quality music in voice chats with advanced features like queue management, admin controls, and live streaming support.</strong></p>
+  
+  <p>
+    <a href="https://github.com/yourusername/JhoomMusic/stargazers"><img src="https://img.shields.io/github/stars/yourusername/JhoomMusic?color=yellow&style=for-the-badge" alt="Stars"></a>
+    <a href="https://github.com/yourusername/JhoomMusic/network/members"><img src="https://img.shields.io/github/forks/yourusername/JhoomMusic?color=orange&style=for-the-badge" alt="Forks"></a>
+    <a href="https://github.com/yourusername/JhoomMusic/issues"><img src="https://img.shields.io/github/issues/yourusername/JhoomMusic?color=red&style=for-the-badge" alt="Issues"></a>
+    <a href="https://github.com/yourusername/JhoomMusic/blob/main/LICENSE"><img src="https://img.shields.io/github/license/yourusername/JhoomMusic?color=blue&style=for-the-badge" alt="License"></a>
+  </p>
+  
+  <p>
+    <a href="https://t.me/JhoomMusicSupport"><img src="https://img.shields.io/badge/Support-Group-blue?style=for-the-badge&logo=telegram" alt="Support Group"></a>
+    <a href="https://t.me/JhoomMusicChannel"><img src="https://img.shields.io/badge/Updates-Channel-blue?style=for-the-badge&logo=telegram" alt="Updates Channel"></a>
+  </p>
+</div>
 
-A powerful Telegram music bot that can play high-quality music in voice chats with advanced features like queue management, admin controls, and live streaming support.
+---
 
 ## 🌟 Features
 
@@ -15,15 +33,17 @@ A powerful Telegram music bot that can play high-quality music in voice chats wi
 - 🎨 **Beautiful UI with Inline Buttons**
 - ⚡ **Fast and Reliable**
 
-## 🚀 Deployment
+## 🚀 Quick Deploy
 
-### Deploy on Heroku
+<div align="center">
+  
+### One-Click Deployment
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/yourusername/JhoomMusic)
-
-### Deploy on Railway
+[![Deploy on Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/yourusername/JhoomMusic)
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https://github.com/yourusername/JhoomMusic)
+
+</div>
 
 ## 🖥️ VPS Deployment Options
 
@@ -458,8 +478,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🆘 Support
 
-- **Support Group:** [JhoomMusic Support](https://t.me/JhoomMusicSupport)
-- **Updates Channel:** [JhoomMusic Channel](https://t.me/JhoomMusicChannel)
+<div align="center">
+  
+**Need Help? Join our community!**
+
+[![Support Group](https://img.shields.io/badge/Support-Group-blue?style=for-the-badge&logo=telegram)](https://t.me/JhoomMusicSupport)
+[![Updates Channel](https://img.shields.io/badge/Updates-Channel-blue?style=for-the-badge&logo=telegram)](https://t.me/JhoomMusicChannel)
+
+</div>
 
 ## ⭐ Star History
 
@@ -474,4 +500,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
+<div align="center">
+  
 **Made with ❤️ by JhoomMusic Team**
+
+*If you found this project helpful, please consider giving it a ⭐*
+
+</div>
