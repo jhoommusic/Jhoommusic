@@ -1,0 +1,82 @@
+{
+    "name": "JhoomMusic Bot",
+    "description": "A Telegram Music Bot with advanced features. Play music in voice chats with high quality audio streaming.",
+    "logo": "https://telegra.ph/file/56d1760224589ee370186.jpg",
+    "keywords": [
+        "python3",
+        "telegram",
+        "bot",
+        "music",
+        "pyrogram",
+        "pytgcalls",
+        "youtube-dl",
+        "voicechat"
+    ],
+    "stack": "heroku-22",
+    "env": {
+        "API_ID": {
+            "description": "Get this value from https://my.telegram.org/apps",
+            "value": "",
+            "required": true
+        },
+        "API_HASH": {
+            "description": "Get this value from https://my.telegram.org/apps",
+            "value": "",
+            "required": true
+        },
+        "BOT_TOKEN": {
+            "description": "Get this value from @BotFather",
+            "value": "",
+            "required": true
+        },
+        "STRING_SESSION": {
+            "description": "Get this value by running python3 generate_session.py",
+            "value": "",
+            "required": true
+        },
+        "MONGO_DB_URI": {
+            "description": "Get this value from https://cloud.mongodb.com",
+            "value": "",
+            "required": false
+        },
+        "LOG_GROUP_ID": {
+            "description": "Chat ID of the group where you want to log bot activities",
+            "value": "",
+            "required": true
+        },
+        "OWNER_ID": {
+            "description": "User ID of the bot owner (separate multiple IDs with spaces)",
+            "value": "",
+            "required": true
+        },
+        "SUDO_USERS": {
+            "description": "User IDs of sudo users (separate multiple IDs with spaces)",
+            "value": "",
+            "required": false
+        },
+        "SUPPORT_CHAT": {
+            "description": "Link to your support group/channel",
+            "value": "https://t.me/JhoomMusicSupport",
+            "required": false
+        },
+        "SUPPORT_CHANNEL": {
+            "description": "Link to your updates channel",
+            "value": "https://t.me/JhoomMusicChannel",
+            "required": false
+        }
+    },
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        },
+        {
+            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+        }
+    ],
+    "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "basic"
+        }
+    }
+}

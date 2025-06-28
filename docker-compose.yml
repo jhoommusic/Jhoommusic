@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  jhoommusic:
+    build: .
+    container_name: jhoommusic-bot
+    restart: unless-stopped
+    environment:
+      - API_ID=${API_ID}
+      - API_HASH=${API_HASH}
+      - BOT_TOKEN=${BOT_TOKEN}
+      - STRING_SESSION=${STRING_SESSION}
+      - MONGO_DB_URI=${MONGO_DB_URI}
+      - LOG_GROUP_ID=${LOG_GROUP_ID}
+      - OWNER_ID=${OWNER_ID}
+      - SUDO_USERS=${SUDO_USERS}
+    volumes:
+      - ./downloads:/app/downloads
+      - ./cache:/app/cache
+      - ./raw_files:/app/raw_files
+    networks:
+      - jhoommusic-network
+
+networks:
+  jhoommusic-network:
+    driver: bridge
