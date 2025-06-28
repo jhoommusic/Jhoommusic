@@ -2,17 +2,12 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from JhoomMusic import app
-from JhoomMusic.utils.database import get_lang, is_on_off
 from config import BANNED_USERS, START_IMG_URL, BOT_NAME, SUPPORT_CHAT
 
+START_TEXT = f"""
+🎵 **Welcome to {BOT_NAME}!**
 
-@app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
-async def start_pm(client, message: Message):
-    await message.reply_photo(
-        photo=START_IMG_URL,
-        caption=f"""**🎵 Welcome to {BOT_NAME}!**
-
-I'm a powerful music bot that can play music in your Telegram groups!
+I'm a powerful music bot that can play high-quality music in your Telegram groups!
 
 **🔥 Features:**
 • Play music from YouTube
@@ -23,7 +18,7 @@ I'm a powerful music bot that can play music in your Telegram groups!
 • Video calls support
 
 **📚 Commands:**
-• `/play` - Play a song
+• `/play <song name>` - Play a song
 • `/pause` - Pause current song
 • `/resume` - Resume paused song
 • `/skip` - Skip current song
@@ -35,30 +30,37 @@ I'm a powerful music bot that can play music in your Telegram groups!
 2. Make me admin with necessary permissions
 3. Use `/play <song name>` to start playing music!
 
-**🆘 Need help?** Join our [Support Chat]({SUPPORT_CHAT})""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "➕ Add me to your Group ➕",
-                        url=f"https://t.me/{app.username}?startgroup=true",
-                    )
-                ],
-                [
-                    InlineKeyboardButton("🆘 Support", url=SUPPORT_CHAT),
-                    InlineKeyboardButton("📢 Updates", url="https://t.me/JhoomMusicChannel"),
-                ],
-                [
-                    InlineKeyboardButton("🔧 Commands", callback_data="settings_back_helper"),
-                ],
-            ]
-        ),
-    )
+**🆘 Need help?** Join our [Support Chat]({SUPPORT_CHAT})
+"""
 
+@app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
+async def start_pm(client, message: Message):
+    """Handle /start command in private chat"""
+    await message.reply_photo(
+        photo=START_IMG_URL,
+        caption=START_TEXT,
+        reply_markup=InlineKeyboardMarkup([
+            [
+                InlineKeyboardButton(
+                    "➕ Add me to your Group ➕",
+                    url=f"https://t.me/{app.username}?startgroup=true",
+                )
+            ],
+            [
+                InlineKeyboardButton("🆘 Support", url=SUPPORT_CHAT),
+                InlineKeyboardButton("📢 Updates", url="https://t.me/JhoomMusicChannel"),
+            ],
+            [
+                InlineKeyboardButton("🔧 Commands", callback_data="help_callback"),
+            ],
+        ])
+    )
 
 @app.on_message(filters.command(["start"]) & filters.group & ~BANNED_USERS)
 async def start_gp(client, message: Message):
-    out = f"""**🎵 {BOT_NAME} Started Successfully!**
+    """Handle /start command in group chat"""
+    out = f"""
+🎵 **{BOT_NAME} Started Successfully!**
 
 **🔥 I'm ready to play music in this group!**
 
@@ -69,25 +71,24 @@ async def start_gp(client, message: Message):
 • `/skip` - Skip current song
 • `/stop` - Stop playing
 
-**💡 Make sure I have admin permissions to work properly!**"""
+**💡 Make sure I have admin permissions to work properly!**
+"""
     
     await message.reply_text(
         text=out,
-        reply_markup=InlineKeyboardMarkup(
+        reply_markup=InlineKeyboardMarkup([
             [
-                [
-                    InlineKeyboardButton("🆘 Support", url=SUPPORT_CHAT),
-                    InlineKeyboardButton("📢 Updates", url="https://t.me/JhoomMusicChannel"),
-                ]
+                InlineKeyboardButton("🆘 Support", url=SUPPORT_CHAT),
+                InlineKeyboardButton("📢 Updates", url="https://t.me/JhoomMusicChannel"),
             ]
-        ),
+        ])
     )
-
 
 @app.on_message(filters.command(["help"]) & ~BANNED_USERS)
 async def help_com(client, message: Message):
-    await message.reply_text(
-        f"""**🆘 Help Menu for {BOT_NAME}**
+    """Handle /help command"""
+    help_text = f"""
+🆘 **Help Menu for {BOT_NAME}**
 
 **🎵 Music Commands:**
 • `/play <song name>` - Play music from YouTube
@@ -112,13 +113,66 @@ async def help_com(client, message: Message):
 • `/ping` - Check bot ping
 • `/stats` - Show bot statistics
 
-**💡 Note:** Some commands require admin permissions in the group.""",
-        reply_markup=InlineKeyboardMarkup(
+**💡 Note:** Some commands require admin permissions in the group.
+"""
+    
+    await message.reply_text(
+        help_text,
+        reply_markup=InlineKeyboardMarkup([
             [
-                [
-                    InlineKeyboardButton("🆘 Support", url=SUPPORT_CHAT),
-                    InlineKeyboardButton("📢 Updates", url="https://t.me/JhoomMusicChannel"),
-                ]
+                InlineKeyboardButton("🆘 Support", url=SUPPORT_CHAT),
+                InlineKeyboardButton("📢 Updates", url="https://t.me/JhoomMusicChannel"),
             ]
-        ),
+        ])
+    )
+
+@app.on_callback_query(filters.regex("help_callback"))
+async def help_callback(client, callback_query):
+    """Handle help callback"""
+    help_text = f"""
+🆘 **Help Menu for {BOT_NAME}**
+
+**🎵 Music Commands:**
+• `/play <song name>` - Play music from YouTube
+• `/pause` - Pause the current song
+• `/resume` - Resume the paused song
+• `/skip` - Skip to next song in queue
+• `/stop` - Stop playing and clear queue
+
+**📊 Other Commands:**
+• `/ping` - Check bot ping
+• `/help` - Show this help menu
+
+**💡 Note:** Add me to your group and make me admin to use music features.
+"""
+    
+    await callback_query.message.edit_text(
+        help_text,
+        reply_markup=InlineKeyboardMarkup([
+            [
+                InlineKeyboardButton("🔙 Back", callback_data="start_back"),
+            ]
+        ])
+    )
+
+@app.on_callback_query(filters.regex("start_back"))
+async def start_back(client, callback_query):
+    """Handle back to start callback"""
+    await callback_query.message.edit_text(
+        START_TEXT,
+        reply_markup=InlineKeyboardMarkup([
+            [
+                InlineKeyboardButton(
+                    "➕ Add me to your Group ➕",
+                    url=f"https://t.me/{app.username}?startgroup=true",
+                )
+            ],
+            [
+                InlineKeyboardButton("🆘 Support", url=SUPPORT_CHAT),
+                InlineKeyboardButton("📢 Updates", url="https://t.me/JhoomMusicChannel"),
+            ],
+            [
+                InlineKeyboardButton("🔧 Commands", callback_data="help_callback"),
+            ],
+        ])
     )
