@@ -36,6 +36,46 @@ def music_panel(chat_id: int):
     ]
     return InlineKeyboardMarkup(buttons)
 
+def commands_panel():
+    """Commands panel with exact layout from image"""
+    buttons = [
+        # First row
+        [
+            InlineKeyboardButton("CHIEF", callback_data="cmd_chief"),
+            InlineKeyboardButton("PERMIT", callback_data="cmd_permit"),
+            InlineKeyboardButton("BROADCAST", callback_data="cmd_broadcast")
+        ],
+        # Second row  
+        [
+            InlineKeyboardButton("BL-CHAT", callback_data="cmd_bl_chat"),
+            InlineKeyboardButton("BL-USER", callback_data="cmd_bl_user"),
+            InlineKeyboardButton("CH-PLAY", callback_data="cmd_ch_play")
+        ],
+        # Third row
+        [
+            InlineKeyboardButton("G-BANS", callback_data="cmd_g_bans"),
+            InlineKeyboardButton("SPIRAL", callback_data="cmd_spiral"),
+            InlineKeyboardButton("REVAMP", callback_data="cmd_revamp")
+        ],
+        # Fourth row
+        [
+            InlineKeyboardButton("PING", callback_data="cmd_ping"),
+            InlineKeyboardButton("PLAY", callback_data="cmd_play"),
+            InlineKeyboardButton("SHUFFLE", callback_data="cmd_shuffle")
+        ],
+        # Fifth row
+        [
+            InlineKeyboardButton("SEEK", callback_data="cmd_seek"),
+            InlineKeyboardButton("SONG", callback_data="cmd_song"),
+            InlineKeyboardButton("SPEED", callback_data="cmd_speed")
+        ],
+        # Back button
+        [
+            InlineKeyboardButton("BACK", callback_data="back_to_main")
+        ]
+    ]
+    return InlineKeyboardMarkup(buttons)
+
 def settings_panel():
     """Settings panel buttons"""
     buttons = [

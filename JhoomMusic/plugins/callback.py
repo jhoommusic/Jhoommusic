@@ -51,40 +51,54 @@ I'm a powerful music bot that can play high-quality music in your Telegram group
 
 @app.on_callback_query(filters.regex("commands_cb"))
 async def commands_callback(client, callback_query: CallbackQuery):
-    """Show commands interface"""
+    """Show commands interface exactly like the image"""
     
     welcome_text = f"""
-**🎵 COMMANDS OF JHOOMMUSIC BOT**
+**COMMANDS OF JHOOMMUSIC BOT**
 
-**THERE ARE DIFFERENT TYPES OF COMMANDS. SOME OF THEM ARE ONLY FOR ADMINS AND SOME OF THEM ARE FOR ALL USERS.**
+**THERE ARE DIFFERENT TYPES OF COMMAND OF JHOOMMUSIC SOME OF THEM ARE ONLY FOR ADMINS AND SOME OF THEM ARE FOR ELITEUSERS.**
 
 **🔧 HOW TO USE COMMANDS?**
 ├ **TAP ON BUTTON BELOW TO KNOW MORE.**
-├ **CHECK FEATURES LIKE ADMIN CONTROLS ETC.**
+├ **CHECK FEATURES LIKE ELITEUSERS ETC.**
 └ **/:- USE ALL FEATURES WITH THIS HANDLER.**
-
-**💡 Note:** Make sure bot has admin permissions for full functionality.
 """
     
-    # Create main command buttons
+    # Create the exact button layout from the image
     keyboard = [
+        # First row
         [
-            InlineKeyboardButton("🎵 MUSIC", callback_data="cmd_music"),
-            InlineKeyboardButton("👑 ADMIN", callback_data="cmd_admin"),
-            InlineKeyboardButton("📢 BROADCAST", callback_data="cmd_broadcast")
+            InlineKeyboardButton("CHIEF", callback_data="cmd_chief"),
+            InlineKeyboardButton("PERMIT", callback_data="cmd_permit"),
+            InlineKeyboardButton("BROADCAST", callback_data="cmd_broadcast")
         ],
+        # Second row  
         [
-            InlineKeyboardButton("⚙️ SETTINGS", callback_data="cmd_settings"),
-            InlineKeyboardButton("📊 INFO", callback_data="cmd_info"),
-            InlineKeyboardButton("🔧 MAINTENANCE", callback_data="cmd_maintenance")
+            InlineKeyboardButton("BL-CHAT", callback_data="cmd_bl_chat"),
+            InlineKeyboardButton("BL-USER", callback_data="cmd_bl_user"),
+            InlineKeyboardButton("CH-PLAY", callback_data="cmd_ch_play")
         ],
+        # Third row
         [
-            InlineKeyboardButton("🎲 EXTRAS", callback_data="cmd_extras"),
-            InlineKeyboardButton("🆘 SUPPORT", url="https://t.me/JhoomMusicSupport"),
-            InlineKeyboardButton("📢 UPDATES", url="https://t.me/JhoomMusicChannel")
+            InlineKeyboardButton("G-BANS", callback_data="cmd_g_bans"),
+            InlineKeyboardButton("SPIRAL", callback_data="cmd_spiral"),
+            InlineKeyboardButton("REVAMP", callback_data="cmd_revamp")
         ],
+        # Fourth row
         [
-            InlineKeyboardButton("🔙 BACK TO MAIN", callback_data="back_to_main")
+            InlineKeyboardButton("PING", callback_data="cmd_ping"),
+            InlineKeyboardButton("PLAY", callback_data="cmd_play"),
+            InlineKeyboardButton("SHUFFLE", callback_data="cmd_shuffle")
+        ],
+        # Fifth row
+        [
+            InlineKeyboardButton("SEEK", callback_data="cmd_seek"),
+            InlineKeyboardButton("SONG", callback_data="cmd_song"),
+            InlineKeyboardButton("SPEED", callback_data="cmd_speed")
+        ],
+        # Back button
+        [
+            InlineKeyboardButton("BACK", callback_data="back_to_main")
         ]
     ]
     
@@ -181,116 +195,3 @@ async def system_info_callback(client, callback_query: CallbackQuery):
         )
     except Exception as e:
         await callback_query.answer(f"Error: {str(e)}", show_alert=True)
-
-# Command category handlers
-COMMAND_CATEGORIES = {
-    "music": {
-        "title": "🎵 MUSIC COMMANDS",
-        "description": "BASIC MUSIC PLAYBACK CONTROLS",
-        "commands": {
-            "/play": "▶️ PLAY MUSIC FROM YOUTUBE",
-            "/pause": "⏸️ PAUSE CURRENT PLAYING STREAM",
-            "/resume": "▶️ RESUME PAUSED STREAM",
-            "/skip": "⏭️ SKIP TO NEXT TRACK IN QUEUE",
-            "/stop": "⏹️ CLEAN QUEUE AND END STREAM",
-            "/queue": "📋 SHOW QUEUED TRACKS LIST",
-            "/shuffle": "🔀 SHUFFLE THE QUEUE",
-            "/vplay": "🎬 START VIDEO STREAM",
-            "/radio": "📻 PLAY RADIO STATIONS"
-        }
-    },
-    "admin": {
-        "title": "👑 ADMIN COMMANDS",
-        "description": "ADMINISTRATIVE CONTROLS FOR GROUP ADMINS",
-        "commands": {
-            "/auth": "✅ ADD USER TO AUTH LIST",
-            "/unauth": "❌ REMOVE USER FROM AUTH LIST",
-            "/authusers": "👥 SHOWS LIST OF AUTH USERS",
-            "/mute": "🔇 MUTE THE ASSISTANT",
-            "/unmute": "🔊 UNMUTE THE ASSISTANT",
-            "/clearqueue": "🗑️ CLEAR ALL QUEUED TRACKS",
-            "/remove": "🗑️ REMOVE TRACK FROM QUEUE",
-            "/move": "🔄 MOVE TRACK IN QUEUE"
-        }
-    },
-    "settings": {
-        "title": "⚙️ SETTINGS COMMANDS",
-        "description": "USER PREFERENCES SYSTEM",
-        "commands": {
-            "/settings": "🛠️ SHOW SETTINGS PANEL",
-            "/language": "🌐 SET BOT LANGUAGE",
-            "/quality": "🎧 SET STREAM QUALITY",
-            "/volume": "🔊 ADJUST PLAYBACK VOLUME"
-        }
-    },
-    "info": {
-        "title": "📊 INFO COMMANDS",
-        "description": "BOT STATUS SYSTEM",
-        "commands": {
-            "/ping": "🏓 SHOW BOT PING AND STATS",
-            "/stats": "📈 SHOW BOT STATISTICS",
-            "/nowplaying": "🎵 CURRENT TRACK INFO"
-        }
-    },
-    "broadcast": {
-        "title": "📢 BROADCAST COMMANDS",
-        "description": "MESSAGE BROADCASTING SYSTEM",
-        "commands": {
-            "/broadcast": "📡 BROADCAST TO ALL CHATS",
-            "/gcast": "🌍 GLOBAL BROADCAST MESSAGE",
-            "/fcast": "⚡ FORWARD BROADCAST MESSAGE"
-        }
-    },
-    "maintenance": {
-        "title": "🔧 MAINTENANCE COMMANDS",
-        "description": "BOT MAINTENANCE CONTROLS",
-        "commands": {
-            "/logs": "📝 GET BOT LOGS",
-            "/restart": "🔄 RESTART THE BOT",
-            "/update": "⬆️ UPDATE BOT VERSION",
-            "/shell": "💻 EXECUTE SHELL COMMANDS"
-        }
-    },
-    "extras": {
-        "title": "🎲 EXTRA COMMANDS",
-        "description": "ADDITIONAL FEATURES AND UTILITIES",
-        "commands": {
-            "/lyrics": "📝 GET SONG LYRICS",
-            "/songinfo": "ℹ️ GET SONG INFORMATION",
-            "/download": "💾 DOWNLOAD AUDIO FILE",
-            "/playlist": "📋 MANAGE PLAYLISTS",
-            "/favorites": "❤️ MANAGE FAVORITE SONGS"
-        }
-    }
-}
-
-@app.on_callback_query(filters.regex(r"cmd_(.+)"))
-async def handle_command_category(client, callback_query: CallbackQuery):
-    """Handle command category callbacks"""
-    category = callback_query.data.split("_")[1]
-    
-    if category in COMMAND_CATEGORIES:
-        cat_info = COMMAND_CATEGORIES[category]
-        
-        # Build command list text
-        command_text = f"**{cat_info['title']}**\n\n"
-        command_text += f"**{cat_info['description']}**\n\n"
-        
-        for cmd, desc in cat_info['commands'].items():
-            command_text += f"**{cmd}** :- {desc}\n"
-        
-        # Create back button
-        keyboard = [
-            [InlineKeyboardButton("🔙 BACK TO COMMANDS", callback_data="commands_cb")],
-            [InlineKeyboardButton("🏠 MAIN MENU", callback_data="back_to_main")]
-        ]
-        
-        try:
-            await callback_query.message.edit_text(
-                command_text,
-                reply_markup=InlineKeyboardMarkup(keyboard)
-            )
-        except:
-            await callback_query.answer("Error loading commands", show_alert=True)
-    else:
-        await callback_query.answer("Category not found!", show_alert=True)

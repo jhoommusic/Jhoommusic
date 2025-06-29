@@ -6,118 +6,247 @@ from config import BANNED_USERS, BOT_NAME, SUPPORT_CHAT, SUPPORT_CHANNEL
 
 # Command categories with detailed information
 COMMAND_CATEGORIES = {
-    "music": {
-        "title": "🎵 MUSIC COMMANDS",
-        "description": "BASIC MUSIC PLAYBACK CONTROLS",
+    "chief": {
+        "title": "👑 CHIEF COMMANDS",
+        "description": "OWNER & SUDO USER CONTROLS",
         "commands": {
-            "/play": "▶️ PLAY MUSIC FROM YOUTUBE",
-            "/pause": "⏸️ PAUSE CURRENT PLAYING STREAM",
-            "/resume": "▶️ RESUME PAUSED STREAM",
-            "/skip": "⏭️ SKIP TO NEXT TRACK IN QUEUE",
-            "/stop": "⏹️ CLEAN QUEUE AND END STREAM",
-            "/queue": "📋 SHOW QUEUED TRACKS LIST",
-            "/shuffle": "🔀 SHUFFLE THE QUEUE",
-            "/loop": "🔁 TOGGLE LOOP MODE",
-            "/vplay": "🎬 START VIDEO STREAM"
+            "/auth": "✅ AUTHORIZE USER TO USE BOT",
+            "/unauth": "❌ REMOVE USER AUTHORIZATION", 
+            "/authusers": "👥 LIST ALL AUTHORIZED USERS",
+            "/broadcast": "📡 SEND MESSAGE TO ALL CHATS",
+            "/gban": "🚫 GLOBALLY BAN A USER",
+            "/ungban": "✅ REMOVE GLOBAL BAN",
+            "/gbannedusers": "📋 LIST GLOBALLY BANNED USERS",
+            "/maintenance": "🛠️ TOGGLE MAINTENANCE MODE",
+            "/logs": "📝 GET BOT LOGS",
+            "/restart": "🔄 RESTART THE BOT"
         }
     },
-    "admin": {
-        "title": "👑 ADMIN COMMANDS",
-        "description": "ADMINISTRATIVE CONTROLS FOR GROUP ADMINS",
+    "permit": {
+        "title": "🔐 PERMIT COMMANDS", 
+        "description": "USER PERMISSION MANAGEMENT",
         "commands": {
             "/auth": "✅ ADD USER TO AUTH LIST",
             "/unauth": "❌ REMOVE USER FROM AUTH LIST",
-            "/authusers": "👥 SHOWS LIST OF AUTH USERS",
-            "/mute": "🔇 MUTE THE ASSISTANT",
-            "/unmute": "🔊 UNMUTE THE ASSISTANT",
-            "/clearqueue": "🗑️ CLEAR ALL QUEUED TRACKS"
-        }
-    },
-    "settings": {
-        "title": "⚙️ SETTINGS COMMANDS",
-        "description": "USER PREFERENCES SYSTEM",
-        "commands": {
-            "/settings": "🛠️ SHOW SETTINGS PANEL",
-            "/language": "🌐 SET BOT LANGUAGE",
-            "/quality": "🎧 SET STREAM QUALITY",
-            "/volume": "🔊 ADJUST PLAYBACK VOLUME"
-        }
-    },
-    "info": {
-        "title": "📊 INFO COMMANDS",
-        "description": "BOT STATUS SYSTEM",
-        "commands": {
-            "/ping": "🏓 SHOW BOT PING AND STATS",
-            "/stats": "📈 SHOW BOT STATISTICS",
-            "/uptime": "⏰ SHOW BOT UPTIME"
+            "/authusers": "👥 SHOW AUTHORIZED USERS LIST",
+            "/clearauth": "🗑️ CLEAR ALL AUTH USERS",
+            "/settings": "⚙️ MANAGE GROUP SETTINGS",
+            "/language": "🌐 CHANGE BOT LANGUAGE",
+            "/quality": "🎧 SET AUDIO QUALITY",
+            "/volume": "🔊 ADJUST VOLUME LEVEL"
         }
     },
     "broadcast": {
         "title": "📢 BROADCAST COMMANDS",
-        "description": "MESSAGE BROADCASTING SYSTEM",
+        "description": "MESSAGE BROADCASTING SYSTEM", 
         "commands": {
             "/broadcast": "📡 BROADCAST TO ALL CHATS",
             "/gcast": "🌍 GLOBAL BROADCAST MESSAGE",
-            "/fcast": "⚡ FORWARD BROADCAST MESSAGE"
+            "/fcast": "⚡ FORWARD BROADCAST MESSAGE",
+            "/stats": "📊 SHOW BOT STATISTICS",
+            "/users": "👥 GET TOTAL USERS COUNT",
+            "/chats": "💬 GET TOTAL CHATS COUNT",
+            "/served": "📈 SHOW SERVED STATISTICS"
         }
     },
-    "maintenance": {
-        "title": "🔧 MAINTENANCE COMMANDS",
-        "description": "BOT MAINTENANCE CONTROLS",
+    "bl_chat": {
+        "title": "🚫 BL-CHAT COMMANDS",
+        "description": "CHAT BLACKLIST MANAGEMENT",
         "commands": {
-            "/logs": "📝 GET BOT LOGS",
+            "/blacklistchat": "🚫 BLACKLIST A CHAT",
+            "/whitelistchat": "✅ WHITELIST A CHAT", 
+            "/blacklistedchats": "📋 LIST BLACKLISTED CHATS",
+            "/block": "🔒 BLOCK USER FROM BOT",
+            "/unblock": "🔓 UNBLOCK USER",
+            "/blockedusers": "📋 LIST BLOCKED USERS"
+        }
+    },
+    "bl_user": {
+        "title": "🚫 BL-USER COMMANDS",
+        "description": "USER BLACKLIST MANAGEMENT",
+        "commands": {
+            "/gban": "🚫 GLOBALLY BAN A USER",
+            "/ungban": "✅ REMOVE GLOBAL BAN",
+            "/gbannedusers": "📋 LIST GLOBALLY BANNED USERS",
+            "/block": "🔒 BLOCK USER FROM BOT",
+            "/unblock": "🔓 UNBLOCK USER FROM BOT",
+            "/blockedusers": "📋 SHOW BLOCKED USERS LIST"
+        }
+    },
+    "ch_play": {
+        "title": "📺 CH-PLAY COMMANDS",
+        "description": "CHANNEL PLAYBACK CONTROLS",
+        "commands": {
+            "/cplay": "▶️ PLAY MUSIC IN CHANNEL",
+            "/cvplay": "🎬 PLAY VIDEO IN CHANNEL",
+            "/cplayforce": "⚡ FORCE PLAY IN CHANNEL",
+            "/channelplay": "📺 CONNECT CHANNEL TO GROUP",
+            "/cpause": "⏸️ PAUSE CHANNEL PLAYBACK",
+            "/cresume": "▶️ RESUME CHANNEL PLAYBACK",
+            "/cskip": "⏭️ SKIP CHANNEL TRACK",
+            "/cstop": "⏹️ STOP CHANNEL PLAYBACK"
+        }
+    },
+    "g_bans": {
+        "title": "🌍 G-BANS COMMANDS",
+        "description": "GLOBAL BAN MANAGEMENT SYSTEM",
+        "commands": {
+            "/gban": "🚫 GLOBALLY BAN A USER",
+            "/ungban": "✅ REMOVE GLOBAL BAN",
+            "/gbannedusers": "📋 LIST ALL GBANNED USERS",
+            "/gbanstats": "📊 GLOBAL BAN STATISTICS",
+            "/checkgban": "🔍 CHECK IF USER IS GBANNED"
+        }
+    },
+    "spiral": {
+        "title": "🌀 SPIRAL COMMANDS",
+        "description": "LOOP & REPEAT CONTROLS",
+        "commands": {
+            "/loop": "🔁 TOGGLE LOOP MODE",
+            "/loop enable": "✅ ENABLE LOOP MODE",
+            "/loop disable": "❌ DISABLE LOOP MODE",
+            "/loop 1": "🔂 LOOP CURRENT TRACK",
+            "/loop queue": "🔁 LOOP ENTIRE QUEUE",
+            "/repeat": "🔄 REPEAT CURRENT SONG"
+        }
+    },
+    "revamp": {
+        "title": "🔧 REVAMP COMMANDS",
+        "description": "BOT MAINTENANCE & REPAIR",
+        "commands": {
             "/restart": "🔄 RESTART THE BOT",
             "/update": "⬆️ UPDATE BOT VERSION",
-            "/maintenance": "🛠️ TOGGLE MAINTENANCE MODE"
+            "/maintenance": "🛠️ TOGGLE MAINTENANCE MODE",
+            "/fixbot": "🔧 FIX COMMON ISSUES",
+            "/diagnose": "🔍 RUN SYSTEM DIAGNOSTICS",
+            "/cleanup": "🧹 CLEAN CACHE FILES"
+        }
+    },
+    "ping": {
+        "title": "🏓 PING COMMANDS",
+        "description": "BOT STATUS & PERFORMANCE",
+        "commands": {
+            "/ping": "🏓 CHECK BOT RESPONSE TIME",
+            "/uptime": "⏰ SHOW BOT UPTIME",
+            "/stats": "📊 SHOW BOT STATISTICS",
+            "/sysinfo": "💻 SYSTEM INFORMATION",
+            "/speed": "⚡ CHECK CONNECTION SPEED"
+        }
+    },
+    "play": {
+        "title": "🎵 PLAY COMMANDS",
+        "description": "MUSIC PLAYBACK CONTROLS",
+        "commands": {
+            "/play": "▶️ PLAY MUSIC FROM YOUTUBE",
+            "/vplay": "🎬 PLAY VIDEO STREAM",
+            "/pause": "⏸️ PAUSE CURRENT STREAM",
+            "/resume": "▶️ RESUME PAUSED STREAM",
+            "/skip": "⏭️ SKIP TO NEXT TRACK",
+            "/stop": "⏹️ STOP PLAYBACK & CLEAR QUEUE",
+            "/player": "🎛️ SHOW PLAYER PANEL",
+            "/queue": "📋 SHOW CURRENT QUEUE"
+        }
+    },
+    "shuffle": {
+        "title": "🔀 SHUFFLE COMMANDS",
+        "description": "QUEUE MANAGEMENT CONTROLS",
+        "commands": {
+            "/shuffle": "🔀 SHUFFLE CURRENT QUEUE",
+            "/queue": "📋 SHOW CURRENT QUEUE",
+            "/clearqueue": "🗑️ CLEAR ALL QUEUED TRACKS",
+            "/remove": "🗑️ REMOVE TRACK FROM QUEUE",
+            "/move": "🔄 MOVE TRACK POSITION",
+            "/playlist": "📋 MANAGE PLAYLISTS"
+        }
+    },
+    "seek": {
+        "title": "⏩ SEEK COMMANDS",
+        "description": "PLAYBACK POSITION CONTROLS",
+        "commands": {
+            "/seek": "⏩ SEEK TO SPECIFIC TIME",
+            "/seekback": "⏪ SEEK BACKWARD IN TRACK",
+            "/forward": "⏭️ FORWARD 10 SECONDS",
+            "/backward": "⏮️ BACKWARD 10 SECONDS",
+            "/restart": "🔄 RESTART CURRENT TRACK"
+        }
+    },
+    "song": {
+        "title": "🎵 SONG COMMANDS",
+        "description": "SONG DOWNLOAD & INFO",
+        "commands": {
+            "/song": "📥 DOWNLOAD SONG FROM YOUTUBE",
+            "/lyrics": "📝 GET SONG LYRICS",
+            "/songinfo": "ℹ️ GET SONG INFORMATION",
+            "/search": "🔍 SEARCH FOR SONGS",
+            "/trending": "🔥 SHOW TRENDING SONGS"
+        }
+    },
+    "speed": {
+        "title": "⚡ SPEED COMMANDS",
+        "description": "PLAYBACK SPEED CONTROLS",
+        "commands": {
+            "/speed": "⚡ ADJUST PLAYBACK SPEED",
+            "/speed 0.5": "🐌 SLOW SPEED (0.5x)",
+            "/speed 1": "▶️ NORMAL SPEED (1x)",
+            "/speed 1.5": "⚡ FAST SPEED (1.5x)",
+            "/speed 2": "🚀 VERY FAST (2x)",
+            "/cspeed": "📺 CHANNEL SPEED CONTROL"
         }
     }
 }
 
 @app.on_message(filters.command(["commands", "cmd", "help"]) & ~BANNED_USERS)
 async def show_commands(client, message: Message):
-    """Show comprehensive command interface"""
+    """Show comprehensive command interface exactly like the image"""
     
     welcome_text = f"""
-**🎵 COMMANDS OF {BOT_NAME.upper()} BOT**
+**COMMANDS OF {BOT_NAME.upper()} BOT**
 
-**THERE ARE DIFFERENT TYPES OF COMMANDS. SOME OF THEM ARE ONLY FOR ADMINS AND SOME OF THEM ARE FOR ALL USERS.**
+**THERE ARE DIFFERENT TYPES OF COMMAND OF {BOT_NAME.upper()} SOME OF THEM ARE ONLY FOR ADMINS AND SOME OF THEM ARE FOR ELITEUSERS.**
 
 **🔧 HOW TO USE COMMANDS?**
 ├ **TAP ON BUTTON BELOW TO KNOW MORE.**
-├ **CHECK FEATURES LIKE ADMIN CONTROLS ETC.**
+├ **CHECK FEATURES LIKE ELITEUSERS ETC.**
 └ **/:- USE ALL FEATURES WITH THIS HANDLER.**
-
-**💡 Note:** Make sure bot has admin permissions for full functionality.
 """
     
-    # Create main command buttons
-    keyboard = []
-    
-    # First row - Main categories
-    keyboard.append([
-        InlineKeyboardButton("🎵 MUSIC", callback_data="cmd_music"),
-        InlineKeyboardButton("👑 ADMIN", callback_data="cmd_admin"),
-        InlineKeyboardButton("📢 BROADCAST", callback_data="cmd_broadcast")
-    ])
-    
-    # Second row - Settings and info
-    keyboard.append([
-        InlineKeyboardButton("⚙️ SETTINGS", callback_data="cmd_settings"),
-        InlineKeyboardButton("📊 INFO", callback_data="cmd_info"),
-        InlineKeyboardButton("🔧 MAINTENANCE", callback_data="cmd_maintenance")
-    ])
-    
-    # Third row - Additional features
-    keyboard.append([
-        InlineKeyboardButton("🎲 EXTRAS", callback_data="cmd_extras"),
-        InlineKeyboardButton("🆘 SUPPORT", url=SUPPORT_CHAT),
-        InlineKeyboardButton("📢 UPDATES", url=SUPPORT_CHANNEL)
-    ])
-    
-    # Fourth row - Back button
-    keyboard.append([
-        InlineKeyboardButton("🔙 BACK TO MAIN", callback_data="back_to_main")
-    ])
+    # Create the exact button layout from the image
+    keyboard = [
+        # First row
+        [
+            InlineKeyboardButton("CHIEF", callback_data="cmd_chief"),
+            InlineKeyboardButton("PERMIT", callback_data="cmd_permit"),
+            InlineKeyboardButton("BROADCAST", callback_data="cmd_broadcast")
+        ],
+        # Second row  
+        [
+            InlineKeyboardButton("BL-CHAT", callback_data="cmd_bl_chat"),
+            InlineKeyboardButton("BL-USER", callback_data="cmd_bl_user"),
+            InlineKeyboardButton("CH-PLAY", callback_data="cmd_ch_play")
+        ],
+        # Third row
+        [
+            InlineKeyboardButton("G-BANS", callback_data="cmd_g_bans"),
+            InlineKeyboardButton("SPIRAL", callback_data="cmd_spiral"),
+            InlineKeyboardButton("REVAMP", callback_data="cmd_revamp")
+        ],
+        # Fourth row
+        [
+            InlineKeyboardButton("PING", callback_data="cmd_ping"),
+            InlineKeyboardButton("PLAY", callback_data="cmd_play"),
+            InlineKeyboardButton("SHUFFLE", callback_data="cmd_shuffle")
+        ],
+        # Fifth row
+        [
+            InlineKeyboardButton("SEEK", callback_data="cmd_seek"),
+            InlineKeyboardButton("SONG", callback_data="cmd_song"),
+            InlineKeyboardButton("SPEED", callback_data="cmd_speed")
+        ],
+        # Back button
+        [
+            InlineKeyboardButton("BACK", callback_data="back_to_main")
+        ]
+    ]
     
     await message.reply_text(
         welcome_text,
@@ -150,81 +279,61 @@ async def handle_command_category(client, callback_query: CallbackQuery):
             command_text,
             reply_markup=InlineKeyboardMarkup(keyboard)
         )
-    
-    elif category == "extras":
-        # Handle extras category
-        extras_text = f"""
-**🎲 EXTRA COMMANDS**
-
-**ADDITIONAL FEATURES AND UTILITIES**
-
-**/lyrics** :- 📝 GET SONG LYRICS
-**/search** :- 🔍 SEARCH FOR SONGS
-**/download** :- 💾 DOWNLOAD AUDIO FILE
-**/radio** :- 📻 PLAY RADIO STATIONS
-**/playlist** :- 📋 MANAGE PLAYLISTS
-**/favorites** :- ❤️ MANAGE FAVORITE SONGS
-**/history** :- 📚 VIEW PLAY HISTORY
-**/nowplaying** :- 🎵 CURRENT TRACK INFO
-**/seek** :- ⏩ SEEK TO POSITION
-**/speed** :- 🏃 ADJUST PLAYBACK SPEED
-"""
-        
-        keyboard = [
-            [InlineKeyboardButton("🔙 BACK TO COMMANDS", callback_data="back_to_commands")],
-            [InlineKeyboardButton("🏠 MAIN MENU", callback_data="back_to_main")]
-        ]
-        
-        await callback_query.message.edit_text(
-            extras_text,
-            reply_markup=InlineKeyboardMarkup(keyboard)
-        )
+    else:
+        await callback_query.answer("Category not found!", show_alert=True)
 
 @app.on_callback_query(filters.regex("back_to_commands"))
 async def back_to_commands(client, callback_query: CallbackQuery):
     """Go back to main commands interface"""
     
     welcome_text = f"""
-**🎵 COMMANDS OF {BOT_NAME.upper()} BOT**
+**COMMANDS OF {BOT_NAME.upper()} BOT**
 
-**THERE ARE DIFFERENT TYPES OF COMMANDS. SOME OF THEM ARE ONLY FOR ADMINS AND SOME OF THEM ARE FOR ALL USERS.**
+**THERE ARE DIFFERENT TYPES OF COMMAND OF {BOT_NAME.upper()} SOME OF THEM ARE ONLY FOR ADMINS AND SOME OF THEM ARE FOR ELITEUSERS.**
 
 **🔧 HOW TO USE COMMANDS?**
 ├ **TAP ON BUTTON BELOW TO KNOW MORE.**
-├ **CHECK FEATURES LIKE ADMIN CONTROLS ETC.**
+├ **CHECK FEATURES LIKE ELITEUSERS ETC.**
 └ **/:- USE ALL FEATURES WITH THIS HANDLER.**
-
-**💡 Note:** Make sure bot has admin permissions for full functionality.
 """
     
-    # Create main command buttons
-    keyboard = []
-    
-    # First row - Main categories
-    keyboard.append([
-        InlineKeyboardButton("🎵 MUSIC", callback_data="cmd_music"),
-        InlineKeyboardButton("👑 ADMIN", callback_data="cmd_admin"),
-        InlineKeyboardButton("📢 BROADCAST", callback_data="cmd_broadcast")
-    ])
-    
-    # Second row - Settings and info
-    keyboard.append([
-        InlineKeyboardButton("⚙️ SETTINGS", callback_data="cmd_settings"),
-        InlineKeyboardButton("📊 INFO", callback_data="cmd_info"),
-        InlineKeyboardButton("🔧 MAINTENANCE", callback_data="cmd_maintenance")
-    ])
-    
-    # Third row - Additional features
-    keyboard.append([
-        InlineKeyboardButton("🎲 EXTRAS", callback_data="cmd_extras"),
-        InlineKeyboardButton("🆘 SUPPORT", url=SUPPORT_CHAT),
-        InlineKeyboardButton("📢 UPDATES", url=SUPPORT_CHANNEL)
-    ])
-    
-    # Fourth row - Back button
-    keyboard.append([
-        InlineKeyboardButton("🔙 BACK TO MAIN", callback_data="back_to_main")
-    ])
+    # Create the exact button layout from the image
+    keyboard = [
+        # First row
+        [
+            InlineKeyboardButton("CHIEF", callback_data="cmd_chief"),
+            InlineKeyboardButton("PERMIT", callback_data="cmd_permit"),
+            InlineKeyboardButton("BROADCAST", callback_data="cmd_broadcast")
+        ],
+        # Second row  
+        [
+            InlineKeyboardButton("BL-CHAT", callback_data="cmd_bl_chat"),
+            InlineKeyboardButton("BL-USER", callback_data="cmd_bl_user"),
+            InlineKeyboardButton("CH-PLAY", callback_data="cmd_ch_play")
+        ],
+        # Third row
+        [
+            InlineKeyboardButton("G-BANS", callback_data="cmd_g_bans"),
+            InlineKeyboardButton("SPIRAL", callback_data="cmd_spiral"),
+            InlineKeyboardButton("REVAMP", callback_data="cmd_revamp")
+        ],
+        # Fourth row
+        [
+            InlineKeyboardButton("PING", callback_data="cmd_ping"),
+            InlineKeyboardButton("PLAY", callback_data="cmd_play"),
+            InlineKeyboardButton("SHUFFLE", callback_data="cmd_shuffle")
+        ],
+        # Fifth row
+        [
+            InlineKeyboardButton("SEEK", callback_data="cmd_seek"),
+            InlineKeyboardButton("SONG", callback_data="cmd_song"),
+            InlineKeyboardButton("SPEED", callback_data="cmd_speed")
+        ],
+        # Back button
+        [
+            InlineKeyboardButton("BACK", callback_data="back_to_main")
+        ]
+    ]
     
     await callback_query.message.edit_text(
         welcome_text,
