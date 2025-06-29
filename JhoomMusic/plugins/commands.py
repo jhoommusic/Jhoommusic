@@ -6,8 +6,8 @@ from config import BANNED_USERS, BOT_NAME, SUPPORT_CHAT, SUPPORT_CHANNEL
 
 # Complete command categories with all 47 commands from your list
 COMMAND_CATEGORIES = {
-    "chief": {
-        "title": "👑 CHIEF COMMANDS",
+    "sultan": {
+        "title": "👑 SULTAN COMMANDS",
         "description": "OWNER & SUDO USER CONTROLS",
         "commands": {
             "/auth [user_id]": "✅ AUTHORIZE A USER",
@@ -23,8 +23,8 @@ COMMAND_CATEGORIES = {
             "/revamp": "🔧 BOT MAINTENANCE CONTROLS"
         }
     },
-    "permit": {
-        "title": "🔐 PERMIT COMMANDS", 
+    "licence": {
+        "title": "🔐 LICENCE COMMANDS", 
         "description": "USER AUTHORIZATION SYSTEM",
         "commands": {
             "/auth [user_id]": "✅ AUTHORIZE A USER",
@@ -176,12 +176,12 @@ async def show_commands(client, message: Message):
 **💡 Note:** Some commands have alternative short forms (like `/p` for `/play`). Admin commands require sudo privileges.
 """
     
-    # Create the exact button layout from the image
+    # Create the exact button layout with SULTAN and LICENCE
     keyboard = [
-        # First row - CHIEF, PERMIT, BROADCAST
+        # First row - SULTAN, LICENCE, BROADCAST
         [
-            InlineKeyboardButton("CHIEF", callback_data="cmd_chief"),
-            InlineKeyboardButton("PERMIT", callback_data="cmd_permit"),
+            InlineKeyboardButton("SULTAN", callback_data="cmd_sultan"),
+            InlineKeyboardButton("LICENCE", callback_data="cmd_licence"),
             InlineKeyboardButton("BROADCAST", callback_data="cmd_broadcast")
         ],
         # Second row - BL-CHAT, BL-USER, CH-PLAY
@@ -265,12 +265,12 @@ async def back_to_commands(client, callback_query: CallbackQuery):
 **💡 Note:** Some commands have alternative short forms (like `/p` for `/play`). Admin commands require sudo privileges.
 """
     
-    # Create the exact button layout from the image
+    # Create the exact button layout with SULTAN and LICENCE
     keyboard = [
-        # First row - CHIEF, PERMIT, BROADCAST
+        # First row - SULTAN, LICENCE, BROADCAST
         [
-            InlineKeyboardButton("CHIEF", callback_data="cmd_chief"),
-            InlineKeyboardButton("PERMIT", callback_data="cmd_permit"),
+            InlineKeyboardButton("SULTAN", callback_data="cmd_sultan"),
+            InlineKeyboardButton("LICENCE", callback_data="cmd_licence"),
             InlineKeyboardButton("BROADCAST", callback_data="cmd_broadcast")
         ],
         # Second row - BL-CHAT, BL-USER, CH-PLAY

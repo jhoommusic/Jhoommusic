@@ -64,12 +64,12 @@ async def commands_callback(client, callback_query: CallbackQuery):
 └ **/:- USE ALL FEATURES WITH THIS HANDLER.**
 """
     
-    # Create the exact button layout from the image
+    # Create the exact button layout from the image with SULTAN and LICENCE
     keyboard = [
-        # First row - CHIEF, PERMIT, BROADCAST
+        # First row - SULTAN, LICENCE, BROADCAST
         [
-            InlineKeyboardButton("CHIEF", callback_data="cmd_chief"),
-            InlineKeyboardButton("PERMIT", callback_data="cmd_permit"),
+            InlineKeyboardButton("SULTAN", callback_data="cmd_sultan"),
+            InlineKeyboardButton("LICENCE", callback_data="cmd_licence"),
             InlineKeyboardButton("BROADCAST", callback_data="cmd_broadcast")
         ],
         # Second row - BL-CHAT, BL-USER, CH-PLAY
