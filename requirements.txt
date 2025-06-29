@@ -13,3 +13,8 @@ youtube-search-python
 speedtest-cli
 gitpython
 heroku3
+redis
+spotipy
+python-dotenv
+colorlog
+uvloop

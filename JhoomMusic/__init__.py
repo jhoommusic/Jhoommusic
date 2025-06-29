@@ -5,6 +5,10 @@ from pyrogram import Client
 from pytgcalls import PyTgCalls
 
 import config
+from .utils.sys import save_bot_start_time
+
+# Save bot start time
+save_bot_start_time()
 
 # Configure logging
 logging.basicConfig(
@@ -51,7 +55,7 @@ from .core.bot import JhoomBot
 from .core.dir import dirr
 from .core.git import git
 from .core.userbot import Userbot
-from .misc import dbb, heroku, sudo
+from .misc import dbb, heroku, sudo, banned_users
 
 # Initialize directories and database
 dirr()
@@ -59,6 +63,7 @@ git()
 dbb()
 heroku()
 sudo()
+banned_users()
 
 # Set bot username
 app.username = config.BOT_USERNAME

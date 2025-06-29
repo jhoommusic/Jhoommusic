@@ -1,11 +1,13 @@
 import asyncio
 import shlex
 from typing import Tuple
+import os
 
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
 import config
+from ..logging import LOGGER
 
 
 def install_req(cmd: str) -> Tuple[str, str, int, int]:
@@ -29,12 +31,17 @@ def install_req(cmd: str) -> Tuple[str, str, int, int]:
 
 def git():
     REPO_LINK = config.GITHUB_REPO
+    if not REPO_LINK:
+        LOGGER(__name__).info("No GitHub repository configured")
+        return
+        
     if config.GIT_TOKEN:
         GIT_USERNAME = REPO_LINK.split("com/")[1].split("/")[0]
         TEMP_REPO = REPO_LINK.split("https://")[1]
         UPSTREAM_REPO = f"https://{config.GIT_TOKEN}@{TEMP_REPO}"
     else:
         UPSTREAM_REPO = REPO_LINK
+        
     try:
         repo = Repo()
         LOGGER(__name__).info(f"Git Client Found")
@@ -56,7 +63,7 @@ def git():
         )
         repo.heads[config.UPSTREAM_BRANCH].checkout(True)
         try:
-            repo.create_remote("origin", config.UPSTREAM_REPO)
+            repo.create_remote("origin", UPSTREAM_REPO)
         except BaseException:
             pass
         nrs = repo.remote("origin").refs

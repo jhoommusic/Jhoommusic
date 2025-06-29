@@ -30,14 +30,15 @@ LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", ""))
 # GitHub Configuration
 GITHUB_REPO = getenv("GITHUB_REPO", "")
 GIT_TOKEN = getenv("GIT_TOKEN", "")
+UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "main")
 
 # Heroku Configuration
 HEROKU_API_KEY = getenv("HEROKU_API_KEY", "")
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME", "")
 
 # Other Configuration
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "")
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/JhoomMusicSupport")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/JhoomMusicChannel")
 
 # Auto Leaving Configuration
 AUTO_LEAVING_ASSISTANT = getenv("AUTO_LEAVING_ASSISTANT", "True")
@@ -66,3 +67,24 @@ YOUTUBE_IMG_URL = getenv("YOUTUBE_IMG_URL", "https://telegra.ph/file/56d17602245
 SPOTIFY_ARTIST_IMG_URL = getenv("SPOTIFY_ARTIST_IMG_URL", "https://telegra.ph/file/56d1760224589ee370186.jpg")
 SPOTIFY_ALBUM_IMG_URL = getenv("SPOTIFY_ALBUM_IMG_URL", "https://telegra.ph/file/56d1760224589ee370186.jpg")
 SPOTIFY_PLAYLIST_IMG_URL = getenv("SPOTIFY_PLAYLIST_IMG_URL", "https://telegra.ph/file/56d1760224589ee370186.jpg")
+
+# Additional Configuration
+BANNED_USERS = []
+CLEANMODE_DELETE_MINS = int(getenv("CLEANMODE_DELETE_MINS", "5"))
+
+# Cache Configuration
+CACHE_DIR = "cache"
+DOWNLOAD_DIR = "downloads"
+RAW_FILES_DIR = "raw_files"
+
+# FFmpeg Configuration
+FFMPEG_PROCESSES = int(getenv("FFMPEG_PROCESSES", "2"))
+
+# Redis Configuration (Optional)
+REDIS_HOST = getenv("REDIS_HOST", "localhost")
+REDIS_PORT = int(getenv("REDIS_PORT", "6379"))
+REDIS_PASSWORD = getenv("REDIS_PASSWORD", "")
+
+# Auto Update Configuration
+AUTO_UPDATE = getenv("AUTO_UPDATE", "True").lower() == "true"
+UPDATE_CHANNEL = getenv("UPDATE_CHANNEL", "")

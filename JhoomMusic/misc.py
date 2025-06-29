@@ -22,7 +22,7 @@ def sudo():
 def dbb():
     global db
     db = {}
-    LOGGER(__name__).info("Database Initialized")
+    LOGGER(__name__).info("Local Database Initialized")
 
 
 def heroku():
@@ -37,3 +37,29 @@ def heroku():
             herokuapp = None
     else:
         herokuapp = None
+
+
+def banned_users():
+    global BANNED_USERS
+    # Initialize banned users filter
+    for user_id in config.BANNED_USERS:
+        BANNED_USERS.add(user_id)
+
+
+async def is_banned_user(user_id: int) -> bool:
+    """Check if user is banned"""
+    return user_id in config.BANNED_USERS
+
+
+async def ban_user(user_id: int):
+    """Ban a user"""
+    if user_id not in config.BANNED_USERS:
+        config.BANNED_USERS.append(user_id)
+        BANNED_USERS.add(user_id)
+
+
+async def unban_user(user_id: int):
+    """Unban a user"""
+    if user_id in config.BANNED_USERS:
+        config.BANNED_USERS.remove(user_id)
+        BANNED_USERS.remove(user_id)
