@@ -4,118 +4,111 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, 
 from JhoomMusic import app
 from config import BANNED_USERS, BOT_NAME, SUPPORT_CHAT, SUPPORT_CHANNEL
 
-# Complete command categories with all 47 commands from your list
+# Exact command categories as per your COMMAND_DETAILS
 COMMAND_CATEGORIES = {
     "sultan": {
         "title": "👑 SULTAN COMMANDS",
-        "description": "OWNER & SUDO USER CONTROLS",
+        "description": "MUSIC PLAYBACK CONTROLS",
         "commands": {
-            "/auth [user_id]": "✅ AUTHORIZE A USER",
-            "/unauth [user_id]": "❌ REMOVE USER AUTHORIZATION", 
-            "/authusers": "👥 LIST AUTHORIZED USERS",
-            "/broadcast [message]": "📡 SEND MESSAGE TO ALL CHATS",
-            "/gban [user_id]": "🚫 GLOBALLY BAN A USER",
-            "/ungban [user_id]": "✅ REMOVE GLOBAL BAN",
-            "/gbannedusers": "📋 LIST GLOBALLY BANNED USERS",
-            "/maintenance": "🛠️ TOGGLE MAINTENANCE MODE",
-            "/logs": "📝 GET BOT LOGS (SUDO-ONLY)",
-            "/restart": "🔄 RESTART THE BOT",
-            "/revamp": "🔧 BOT MAINTENANCE CONTROLS"
+            "/pause": "⏸️ PAUSE CURRENT PLAYING STREAM",
+            "/resume": "▶️ RESUME PAUSED STREAM", 
+            "/skip": "⏭️ SKIP TO NEXT TRACK IN QUEUE",
+            "/stop": "⏹️ CLEAN QUEUE AND END STREAM",
+            "/player": "🎛️ GET INTERACTIVE PLAYER PANEL",
+            "/end": "🔚 END THE STREAM",
+            "/queue": "📋 SHOW QUEUED TRACKS LIST"
         }
     },
     "licence": {
-        "title": "🔐 LICENCE COMMANDS", 
+        "title": "🔐 LICENCE COMMANDS",
         "description": "USER AUTHORIZATION SYSTEM",
         "commands": {
-            "/auth [user_id]": "✅ AUTHORIZE A USER",
-            "/unauth [user_id]": "❌ REMOVE USER AUTHORIZATION",
-            "/authusers": "👥 LIST AUTHORIZED USERS",
-            "/settings": "⚙️ OPEN SETTINGS MENU",
-            "/settings volume [1-200]": "🔊 ADJUST PLAYBACK VOLUME",
-            "/settings quality [low/medium/high]": "🎧 CHANGE STREAM QUALITY",
-            "/settings language [en/hi/etc]": "🌐 CHANGE BOT LANGUAGE",
-            "/settings notifications [on/off]": "🔔 TOGGLE NOTIFICATIONS"
+            "/auth user_id": "✅ ADD USER TO AUTH LIST",
+            "/unauth user_id": "❌ REMOVE USER FROM AUTH LIST",
+            "/authusers": "👥 SHOWS LIST OF AUTH USERS"
         }
     },
     "broadcast": {
         "title": "📢 BROADCAST COMMANDS",
-        "description": "MESSAGE BROADCASTING SYSTEM", 
+        "description": "MESSAGE BROADCASTING SYSTEM",
         "commands": {
-            "/broadcast [message]": "📡 SEND MESSAGE TO ALL CHATS",
-            "/stats": "📊 SHOW BOT STATISTICS",
-            "/uptime": "⏰ SHOW BOT UPTIME",
-            "/ping": "🏓 CHECK BOT RESPONSE TIME"
+            "/broadcast text": "📡 BROADCAST TO ALL CHATS",
+            "/broadcast -pin": "📌 PIN BROADCASTED MESSAGES",
+            "/broadcast -pinloud": "🔊 PIN WITH NOTIFICATION",
+            "/broadcast -user": "👤 BROADCAST TO USERS",
+            "/broadcast -assistant": "🤖 BROADCAST FROM ASSISTANT",
+            "/broadcast -nobot": "🚫 FORCE BOT TO NOT BROADCAST"
         }
     },
     "bl_chat": {
-        "title": "🚫 BL-CHAT COMMANDS",
+        "title": "🚫 BL-CHAT COMMANDS", 
         "description": "CHAT BLACKLIST MANAGEMENT",
         "commands": {
-            "/blacklistchat [chat_id]": "🚫 BLACKLIST A CHAT",
-            "/whitelistchat [chat_id]": "✅ WHITELIST A CHAT", 
-            "/blacklistedchat": "📋 SHOW BLACKLISTED CHATS"
+            "/blacklistchat chat_id": "🚫 BLACKLIST CHAT",
+            "/whitelistchat chat_id": "✅ WHITELIST CHAT",
+            "/blacklistedchat": "📋 SHOWS BLACKLISTED CHATS"
         }
     },
     "bl_user": {
         "title": "🚫 BL-USER COMMANDS",
-        "description": "USER BLACKLIST MANAGEMENT",
+        "description": "USER BLOCKING SYSTEM", 
         "commands": {
-            "/block [username]": "🔒 BLOCK USER FROM BOT",
-            "/unblock [username]": "🔓 UNBLOCK USER"
+            "/block username": "🔒 BLOCK USER FROM BOT",
+            "/unblock username": "🔓 UNBLOCK USER",
+            "/blockedusers": "📋 SHOWS BLOCKED USERS LIST"
         }
     },
     "ch_play": {
         "title": "📺 CH-PLAY COMMANDS",
-        "description": "CHANNEL PLAYBACK CONTROLS",
+        "description": "CHANNEL STREAMING CONTROLS",
         "commands": {
-            "/cplay [query]": "▶️ PLAY MUSIC IN CONNECTED CHANNEL",
-            "/cvplay [query]": "🎬 PLAY VIDEO IN CONNECTED CHANNEL",
-            "/cplayforce [query]": "⚡ FORCE PLAY NEW TRACK IN CHANNEL",
+            "/cplay": "🎵 STREAM AUDIO IN CHANNEL",
+            "/cvplay": "🎬 STREAM VIDEO IN CHANNEL", 
+            "/cplayforce": "⚡ FORCE PLAY NEW TRACK",
             "/channelplay": "📺 CONNECT CHANNEL TO GROUP"
         }
     },
     "g_bans": {
         "title": "🌍 G-BANS COMMANDS",
-        "description": "GLOBAL BAN MANAGEMENT SYSTEM",
+        "description": "GLOBAL BAN SYSTEM",
         "commands": {
-            "/gban [user_id]": "🚫 GLOBALLY BAN A USER",
-            "/ungban [user_id]": "✅ REMOVE GLOBAL BAN",
-            "/gbannedusers": "📋 LIST GLOBALLY BANNED USERS"
+            "/gban user_id": "🚫 GLOBALLY BAN USER",
+            "/ungban user_id": "✅ REMOVE GLOBAL BAN", 
+            "/gbannedusers": "📋 SHOW GLOBALLY BANNED USERS"
         }
     },
     "spiral": {
         "title": "🌀 SPIRAL COMMANDS",
-        "description": "LOOP & REPEAT CONTROLS",
+        "description": "LOOPING CONTROLS",
         "commands": {
-            "/loop [enable/disable/1-10]": "🔁 ENABLE/DISABLE LOOPING (TRACK OR QUEUE)"
+            "/loop enable/disable": "🔁 TOGGLE LOOP",
+            "/loop 1/2/3": "🔢 SET LOOP COUNT"
         }
     },
     "revamp": {
-        "title": "🔧 REVAMP COMMANDS",
-        "description": "BOT MAINTENANCE & REPAIR",
+        "title": "🔧 REVAMP COMMANDS", 
+        "description": "MAINTENANCE CONTROLS",
         "commands": {
-            "/revamp": "🔧 BOT MAINTENANCE CONTROLS",
-            "/fixbot": "🔧 REPAIR COMMON ISSUES (ADMIN-ONLY)",
-            "/diagnose": "🔍 RUN SYSTEM DIAGNOSTICS (ADMIN-ONLY)",
-            "/logger": "📝 TOGGLE ACTIVITY LOGGING",
+            "/logs": "📝 GET BOT LOGS",
+            "/logger": "📊 TOGGLE ACTIVITY LOGGING",
             "/maintenance": "🛠️ TOGGLE MAINTENANCE MODE"
         }
     },
     "ping": {
         "title": "🏓 PING COMMANDS",
-        "description": "BOT STATUS & PERFORMANCE",
+        "description": "BOT STATUS SYSTEM", 
         "commands": {
-            "/ping": "🏓 CHECK BOT RESPONSE TIME",
-            "/uptime": "⏰ SHOW BOT UPTIME",
-            "/stats": "📊 SHOW BOT STATISTICS"
+            "/ping": "🏓 SHOW BOT PING AND STATS",
+            "/stats": "📊 SHOW BOT STATISTICS",
+            "/uptime": "⏰ SHOW BOT UPTIME"
         }
     },
     "play": {
         "title": "🎵 PLAY COMMANDS",
-        "description": "MUSIC PLAYBACK CONTROLS",
+        "description": "MUSIC PLAYBACK SYSTEM",
         "commands": {
             "/play [song/URL]": "▶️ PLAY MUSIC FROM YOUTUBE/SPOTIFY OR REPLY TO AUDIO FILE",
-            "/vplay [video/URL]": "🎬 PLAY VIDEOS FROM YOUTUBE",
+            "/vplay [video/URL]": "🎬 PLAY VIDEOS FROM YOUTUBE", 
             "/pause": "⏸️ PAUSE CURRENT PLAYBACK",
             "/resume": "▶️ RESUME PAUSED PLAYBACK",
             "/skip": "⏭️ SKIP TO NEXT TRACK IN QUEUE",
@@ -128,33 +121,72 @@ COMMAND_CATEGORIES = {
     },
     "shuffle": {
         "title": "🔀 SHUFFLE COMMANDS",
-        "description": "QUEUE MANAGEMENT CONTROLS",
+        "description": "QUEUE MANAGEMENT",
         "commands": {
-            "/shuffle": "🔀 SHUFFLE THE CURRENT QUEUE",
-            "/queue": "📋 SHOW CURRENT QUEUE"
+            "/shuffle": "🔀 SHUFFLE THE QUEUE",
+            "/queue": "📋 SHOW SHUFFLED QUEUE"
         }
     },
     "seek": {
-        "title": "⏩ SEEK COMMANDS",
-        "description": "PLAYBACK POSITION CONTROLS",
+        "title": "⏩ SEEK COMMANDS", 
+        "description": "PLAYBACK POSITION CONTROL",
         "commands": {
-            "/seek [seconds]": "⏩ SEEK TO POSITION IN TRACK",
-            "/seekback [seconds]": "⏪ SEEK BACKWARD IN TRACK"
+            "/seek time-dur": "⏩ SEEK TO POSITION",
+            "/seekback time-dur": "⏪ SEEK BACKWARDS"
         }
     },
     "song": {
         "title": "🎵 SONG COMMANDS",
-        "description": "SONG DOWNLOAD & INFO",
+        "description": "TRACK DOWNLOAD SYSTEM",
         "commands": {
-            "/song [query/URL]": "📥 DOWNLOAD TRACK FROM YOUTUBE"
+            "/song url/name": "📥 DOWNLOAD TRACK FROM YOUTUBE"
         }
     },
     "speed": {
         "title": "⚡ SPEED COMMANDS",
-        "description": "PLAYBACK SPEED CONTROLS",
+        "description": "PLAYBACK SPEED CONTROLS", 
         "commands": {
             "/speed": "⚡ ADJUST PLAYBACK SPEED IN GROUP",
             "/cSpeed": "⚡ ADJUST SPEED IN CHANNEL"
+        }
+    },
+    # Additional categories from your list
+    "vplay": {
+        "title": "🎬 VPLAY COMMANDS",
+        "description": "VIDEO STREAMING",
+        "commands": {
+            "/vplay": "🎬 START VIDEO STREAM",
+            "/vplayforce": "⚡ FORCE NEW VIDEO STREAM"
+        }
+    },
+    "troubleshoot": {
+        "title": "🔧 TROUBLESHOOT COMMANDS",
+        "description": "SELF-REPAIR SYSTEM",
+        "commands": {
+            "/fixbot": "🔧 REPAIR COMMON ISSUES",
+            "/diagnose": "🔍 CHECK BOT HEALTH", 
+            "/fixproblem": "🛠️ (ADMIN ONLY) REMOTE REPAIRS"
+        }
+    },
+    "settings": {
+        "title": "⚙️ SETTINGS COMMANDS",
+        "description": "USER PREFERENCES SYSTEM",
+        "commands": {
+            "/settings": "⚙️ SHOW SETTINGS PANEL",
+            "/settings volume [1-200]": "🔊 SET PLAYBACK VOLUME",
+            "/settings quality [low|medium|high]": "🎧 SET STREAM QUALITY", 
+            "/settings language [en|hi|etc]": "🌐 SET BOT LANGUAGE",
+            "/settings notifications [on|off]": "🔔 TOGGLE NOTIFICATIONS"
+        }
+    },
+    "radio": {
+        "title": "📻 RADIO COMMANDS",
+        "description": "FM RADIO SYSTEM",
+        "commands": {
+            "/radio search [query]": "🔍 SEARCH RADIO STATIONS",
+            "/radio play [ID]": "▶️ PLAY RADIO STATION",
+            "/radio stop": "⏹️ STOP RADIO PLAYBACK",
+            "/radio list": "📋 SHOW POPULAR STATIONS"
         }
     }
 }
@@ -173,7 +205,7 @@ async def show_commands(client, message: Message):
 ├ **CHECK FEATURES LIKE ELITEUSERS ETC.**
 └ **/:- USE ALL FEATURES WITH THIS HANDLER.**
 
-**💡 Note:** Some commands have alternative short forms (like `/p` for `/play`). Admin commands require sudo privileges.
+**💡 Note:** Make sure bot has admin permissions for full functionality.
 """
     
     # Create the exact button layout with SULTAN and LICENCE
@@ -228,7 +260,7 @@ async def handle_command_category(client, callback_query: CallbackQuery):
     if category in COMMAND_CATEGORIES:
         cat_info = COMMAND_CATEGORIES[category]
         
-        # Build command list text
+        # Build command list text exactly as per your format
         command_text = f"**{cat_info['title']}**\n\n"
         command_text += f"**{cat_info['description']}**\n\n"
         
@@ -262,7 +294,7 @@ async def back_to_commands(client, callback_query: CallbackQuery):
 ├ **CHECK FEATURES LIKE ELITEUSERS ETC.**
 └ **/:- USE ALL FEATURES WITH THIS HANDLER.**
 
-**💡 Note:** Some commands have alternative short forms (like `/p` for `/play`). Admin commands require sudo privileges.
+**💡 Note:** Make sure bot has admin permissions for full functionality.
 """
     
     # Create the exact button layout with SULTAN and LICENCE
@@ -316,26 +348,23 @@ async def quick_help(client, message: Message):
     quick_text = f"""
 **⚡ QUICK HELP - {BOT_NAME}**
 
-**🎵 Essential Music Commands:**
-• `/play [song/URL]` - Play music from YouTube/Spotify
-• `/vplay [video/URL]` - Play videos from YouTube
-• `/pause` - Pause current playback
-• `/resume` - Resume paused playback
-• `/skip` - Skip to next track in queue
-• `/stop` - Stop playback and clear queue
+**🎵 Essential Commands:**
+• `/play <song>` - Play music
+• `/pause` - Pause playback
+• `/resume` - Resume playback
+• `/skip` - Skip current song
+• `/stop` - Stop and clear queue
+
+**👑 Admin Commands:**
+• `/auth <user>` - Authorize user
+• `/mute` - Mute assistant
+• `/clearqueue` - Clear queue
+
+**📊 Info Commands:**
+• `/ping` - Check bot status
 • `/queue` - Show current queue
 
-**🔧 Troubleshooting Commands:**
-• `/fixbot` - Repair common issues (admin-only)
-• `/diagnose` - Run system diagnostics (admin-only)
-• `/ping` - Check bot response time
-
-**⚙️ Settings Commands:**
-• `/settings` - Open settings menu
-• `/settings volume [1-200]` - Adjust volume
-• `/settings quality [low/medium/high]` - Change quality
-
-**Need more commands?** Use `/commands` for complete list!
+**Need more commands?** Use `/commands` for full list!
 """
     
     keyboard = [
@@ -358,10 +387,7 @@ async def search_command(client, message: Message):
     if len(message.command) < 2:
         return await message.reply_text(
             "**Usage:** `/search_cmd <keyword>`\n\n"
-            "**Examples:**\n"
-            "• `/search_cmd play` - Find play commands\n"
-            "• `/search_cmd auth` - Find authorization commands\n"
-            "• `/search_cmd ban` - Find ban commands"
+            "**Example:** `/search_cmd play`"
         )
     
     keyword = " ".join(message.command[1:]).lower()
@@ -380,7 +406,7 @@ async def search_command(client, message: Message):
         if len(found_commands) > 10:
             result_text += f"\n\n**... and {len(found_commands) - 10} more results**"
     else:
-        result_text = f"**❌ No commands found for '{keyword}'**\n\nTry searching with different keywords like:\n• play, pause, skip\n• auth, ban, block\n• settings, volume, quality"
+        result_text = f"**❌ No commands found for '{keyword}'**\n\nTry searching with different keywords."
     
     keyboard = [
         [InlineKeyboardButton("📋 All Commands", callback_data="back_to_commands")]
@@ -390,55 +416,3 @@ async def search_command(client, message: Message):
         result_text,
         reply_markup=InlineKeyboardMarkup(keyboard)
     )
-
-# Alternative command triggers
-@app.on_message(filters.command(["help"]) & ~BANNED_USERS)
-async def help_redirect(client, message: Message):
-    """Redirect help to commands"""
-    await show_commands(client, message)
-
-@app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
-async def start_private(client, message: Message):
-    """Handle start in private chat"""
-    start_text = f"""
-🎵 **Welcome to {BOT_NAME}!**
-
-I'm a powerful music bot that can play high-quality music in your Telegram groups!
-
-**🔥 Features:**
-• Play music from YouTube/Spotify
-• High quality audio streaming
-• Queue management
-• Admin controls
-• Live stream support
-• Video calls support
-
-**📚 Quick Commands:**
-• `/play <song name>` - Play a song
-• `/commands` - Show all commands
-• `/help` - Get help
-
-**💡 How to use:**
-1. Add me to your group
-2. Make me admin with necessary permissions
-3. Use `/play <song name>` to start playing music!
-"""
-    
-    keyboard = [
-        [
-            InlineKeyboardButton(
-                "➕ Add me to your Group ➕",
-                url=f"https://t.me/{app.username}?startgroup=true",
-            )
-        ],
-        [
-            InlineKeyboardButton("🎵 Commands", callback_data="back_to_commands"),
-            InlineKeyboardButton("ℹ️ About", callback_data="about_bot")
-        ],
-        [
-            InlineKeyboardButton("🆘 Support", url=SUPPORT_CHAT),
-            InlineKeyboardButton("📢 Updates", url=SUPPORT_CHANNEL),
-        ]
-    ]
-    
-    await message.reply_text(start_text, reply_markup=InlineKeyboardMarkup(keyboard))
