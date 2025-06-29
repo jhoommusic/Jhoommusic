@@ -66,31 +66,31 @@ async def commands_callback(client, callback_query: CallbackQuery):
     
     # Create the exact button layout from the image
     keyboard = [
-        # First row
+        # First row - CHIEF, PERMIT, BROADCAST
         [
             InlineKeyboardButton("CHIEF", callback_data="cmd_chief"),
             InlineKeyboardButton("PERMIT", callback_data="cmd_permit"),
             InlineKeyboardButton("BROADCAST", callback_data="cmd_broadcast")
         ],
-        # Second row  
+        # Second row - BL-CHAT, BL-USER, CH-PLAY
         [
             InlineKeyboardButton("BL-CHAT", callback_data="cmd_bl_chat"),
             InlineKeyboardButton("BL-USER", callback_data="cmd_bl_user"),
             InlineKeyboardButton("CH-PLAY", callback_data="cmd_ch_play")
         ],
-        # Third row
+        # Third row - G-BANS, SPIRAL, REVAMP
         [
             InlineKeyboardButton("G-BANS", callback_data="cmd_g_bans"),
             InlineKeyboardButton("SPIRAL", callback_data="cmd_spiral"),
             InlineKeyboardButton("REVAMP", callback_data="cmd_revamp")
         ],
-        # Fourth row
+        # Fourth row - PING, PLAY, SHUFFLE
         [
             InlineKeyboardButton("PING", callback_data="cmd_ping"),
             InlineKeyboardButton("PLAY", callback_data="cmd_play"),
             InlineKeyboardButton("SHUFFLE", callback_data="cmd_shuffle")
         ],
-        # Fifth row
+        # Fifth row - SEEK, SONG, SPEED
         [
             InlineKeyboardButton("SEEK", callback_data="cmd_seek"),
             InlineKeyboardButton("SONG", callback_data="cmd_song"),
