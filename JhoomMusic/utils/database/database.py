@@ -1,7 +1,7 @@
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 import config
 
-TEMP_MONGODB = "mongodb+srv://JhoomMusic:JhoomMusic@cluster0.example.mongodb.net/?retryWrites=true&w=majority"
+TEMP_MONGODB = "mongodb+srv://username:password@cluster0.mongodb.net/dbname?retryWrites=true&w=majority"
 
 if config.MONGO_DB_URI is None:
     LOGGER(__name__).warning(
