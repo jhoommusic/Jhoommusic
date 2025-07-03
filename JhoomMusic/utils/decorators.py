@@ -2,10 +2,10 @@ from functools import wraps
 from pyrogram.types import Message
 from pyrogram.enums import ChatMemberStatus
 
-from JhoomMusic import app
 from config import OWNER_ID, SUDO_USERS
 
 def AdminRightsCheck(f):
+    from JhoomMusic import app  # lazy import
     """Decorator to check admin rights"""
     @wraps(f)
     async def decorated(client, message: Message, *args, **kwargs):

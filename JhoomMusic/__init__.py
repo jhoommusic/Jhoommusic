@@ -2,7 +2,7 @@ import sys
 import time
 import logging
 from pyrogram import Client
-from pytgcalls import PyTgCalls
+from tgcaller import TgCaller
 
 import config
 from .utils.sys import save_bot_start_time
@@ -22,7 +22,7 @@ logging.basicConfig(
 )
 
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
-logging.getLogger("pytgcalls").setLevel(logging.WARNING)
+logging.getLogger("tgcaller").setLevel(logging.WARNING)
 
 LOGGER = logging.getLogger
 

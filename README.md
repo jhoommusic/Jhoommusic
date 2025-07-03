@@ -565,7 +565,7 @@ git push origin feature/amazing-feature
 </td>
 <td align="center" width="25%">
 <img src="https://avatars.githubusercontent.com/u/84740906?s=64&v=4" width="64" height="64" style="border-radius: 50%;">
-<br><strong>PyTgCalls</strong>
+<br><strong>TgCaller</strong>
 <br><em>Voice Chat Integration</em>
 </td>
 <td align="center" width="25%">

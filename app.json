@@ -8,7 +8,7 @@
         "bot",
         "music",
         "pyrogram",
-        "pytgcalls",
+        "tgcaller",
         "youtube-dl",
         "voicechat"
     ],
@@ -35,7 +35,8 @@
             "required": true
         },
         "MONGO_DB_URI": {
-            "description": "Get this value from https://cloud.mongodb.com",
+            "description": "Get this value from https://cloud.mongodb.
+    if mongodb else None # com",
             "value": "",
             "required": false
         },

@@ -45,7 +45,7 @@ async def seek_command(client, message: Message, _, chat_id):
         if total_seconds < 0:
             return await message.reply_text("❌ **Time cannot be negative!**")
         
-        # For now, this is a placeholder as actual seeking requires PyTgCalls implementation
+        # For now, this is a placeholder as actual seeking requires TgCaller implementation
         await message.reply_text(
             f"⏩ **Seeking to {seconds_to_min(total_seconds)}**\n\n"
             f"**Position:** {total_seconds} seconds\n\n"
@@ -165,7 +165,7 @@ async def seek_back_callback(client, callback_query):
     # Placeholder implementation
     await callback_query.answer(f"⏪ Seeking back {seconds} seconds", show_alert=False)
     
-    # In actual implementation, this would call PyTgCalls seek function
+    # In actual implementation, this would call TgCaller seek function
     # await Jhoom.seek_stream(chat_id, -seconds)
 
 @app.on_callback_query(filters.regex(r"seek_forward_(\d+)_(.*)"))
@@ -177,7 +177,7 @@ async def seek_forward_callback(client, callback_query):
     # Placeholder implementation
     await callback_query.answer(f"⏩ Seeking forward {seconds} seconds", show_alert=False)
     
-    # In actual implementation, this would call PyTgCalls seek function
+    # In actual implementation, this would call TgCaller seek function
     # await Jhoom.seek_stream(chat_id, seconds)
 
 @app.on_message(filters.command(["position", "pos"]) & filters.group & ~BANNED_USERS)
@@ -186,7 +186,7 @@ async def current_position(client, message: Message):
     
     chat_id = message.chat.id
     
-    # Placeholder - in actual implementation, get from PyTgCalls
+    # Placeholder - in actual implementation, get from TgCaller
     current_pos = 0  # This would be fetched from the actual player
     total_duration = 0  # This would be the track duration
     

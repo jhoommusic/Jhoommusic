@@ -11,6 +11,6 @@ logging.basicConfig(
 )
 
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
-logging.getLogger("pytgcalls").setLevel(logging.WARNING)
+logging.getLogger("tgcaller").setLevel(logging.WARNING)
 
 LOGGER = logging.getLogger

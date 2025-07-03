@@ -1,0 +1,2 @@
+[console_scripts]
+tgcaller = tgcaller.cli:main

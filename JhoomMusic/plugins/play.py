@@ -3,7 +3,7 @@ import os
 import random
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
-from pytgcalls.exceptions import NoActiveGroupCall, TelegramServerError
+from tgcaller.exceptions import NoActiveGroupCall, TelegramServerError
 
 from JhoomMusic import app, userbot
 from JhoomMusic.core.call import Jhoom
