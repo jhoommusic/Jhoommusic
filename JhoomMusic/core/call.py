@@ -25,10 +25,14 @@ active_chats = {}
 
 class Call:
     def __init__(self):
+<<<<<<< Updated upstream
         # ---- FIX START ----
         # Remove cache_duration argument (not accepted), and use real Client object
         self.tgcaller = TgCaller(userbot if userbot else app)
         # ---- FIX END ----
+=======
+        self.tgcaller = TgCaller(config.userbot if config.userbot else config.app)
+>>>>>>> Stashed changes
 
     async def pause_stream(self, chat_id: int):
         """Pause the current stream"""
