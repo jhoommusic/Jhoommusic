@@ -34,7 +34,9 @@ async def init():
         
         # Start userbot
         if userbot:
-            await userbot.start()
+            if userbot:
+    if userbot:
+    if userbot:
         
         # Start TgCaller
         await Jhoom.start()
