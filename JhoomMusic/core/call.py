@@ -8,7 +8,8 @@ from tgcaller.types.input_stream.quality import (
     HighQualityAudio,
     HighQualityVideo,
     LowQualityVideo,
-    MediumQualityVideo,)
+    MediumQualityVideo,
+)
 
 from tgcaller.exceptions import NoActiveGroupCall
 
@@ -22,7 +23,6 @@ active_chats = {}
 class Call:
     def __init__(self):
         self.tgcaller = TgCaller(config.userbot if config.userbot else config.app, cache_duration=100)
-
 
     async def pause_stream(self, chat_id: int):
         """Pause the current stream"""
@@ -45,77 +45,75 @@ class Call:
     async def stop_stream(self, chat_id: int):
         """Stop the current stream and leave call"""
         try:
-#            await self.tgcaller.leave_group_call(chat_id)
-#            if chat_id in db:
-#                db[chat_id].clear()
-#            if chat_id in active_chats:
-#                del active_chats[chat_id]
-#            return True
-#        except Exception as e:
-#            LOGGER(__name__).error(f"Error stopping stream in {chat_id}: {e}")
-#            return False
-#
-##    async def skip_stream(self, chat_id: int, link: str, video: Union[bool, str] = None):
-##        """Skip to next track"""
-##        try:
-##            if video:
-### stream = VideoPiped(
-### link,
-### HighQualityVideo(),
-### headers=self.get_headers(),
-### )
-### else:
-### stream = AudioPiped(
-### link, 
-### HighQualityAudio(), 
-### headers=self.get_headers()
-### )
-### 
-### await self.tgcaller.change_stream(chat_id, stream)
-### return True
-### except Exception as e:
-### LOGGER(__name__).error(f"Error skipping stream in {chat_id}: {e}")
-### return False
-### 
-### async def join_call(
-### self,
-### chat_id: int,
-### original_chat_id: int,
-### link: str,
-### video: Union[bool, str] = None,
-### ):
-### """Join voice chat and start streaming"""
-### try:
-### if video:
-### stream = VideoPiped(
-### link,
-### HighQualityVideo(),
-#### headers=self.get_headers(),
-#### )
-#### else:
-#### stream = AudioPiped(
-#### link, 
-#### HighQualityAudio(), 
-###                    headers=self.get_headers()
-###                )
-###
-###            await self.tgcaller.join_group_call(
-###                chat_id,
-##                stream,
-##            )
-##            
-##            active_chats[chat_id] = {
-#                "playing": True,
-#                "original_chat_id": original_chat_id,
-#                "stream_type": "video" if video else "audio"
-#            }
-#            
-#            return True
-#        except NoActiveGroupCall:
-#            LOGGER(__name__).error(f"No active voice chat in {chat_id}")
-#            return False
-#        except Exception as e:
-#            LOGGER(__name__).error(f"Error joining call in {chat_id}: {e}")
+            await self.tgcaller.leave_group_call(chat_id)
+            if chat_id in db:
+                db[chat_id].clear()
+            if chat_id in active_chats:
+                del active_chats[chat_id]
+            return True
+        except Exception as e:
+            LOGGER(__name__).error(f"Error stopping stream in {chat_id}: {e}")
+            return False
+
+    async def skip_stream(self, chat_id: int, link: str, video: Union[bool, str] = None):
+        """Skip to next track"""
+        try:
+            # Uncomment and implement the correct stream construction for your project
+            # if video:
+            #     stream = VideoPiped(
+            #         link,
+            #         HighQualityVideo(),
+            #         headers=self.get_headers(),
+            #     )
+            # else:
+            #     stream = AudioPiped(
+            #         link,
+            #         HighQualityAudio(),
+            #         headers=self.get_headers()
+            #     )
+            # await self.tgcaller.change_stream(chat_id, stream)
+            return True
+        except Exception as e:
+            LOGGER(__name__).error(f"Error skipping stream in {chat_id}: {e}")
+            return False
+
+    async def join_call(
+        self,
+        chat_id: int,
+        original_chat_id: int,
+        link: str,
+        video: Union[bool, str] = None,
+    ):
+        """Join voice chat and start streaming"""
+        try:
+            # Uncomment and implement the correct stream construction for your project
+            # if video:
+            #     stream = VideoPiped(
+            #         link,
+            #         HighQualityVideo(),
+            #         headers=self.get_headers(),
+            #     )
+            # else:
+            #     stream = AudioPiped(
+            #         link,
+            #         HighQualityAudio(),
+            #         headers=self.get_headers()
+            #     )
+            # await self.tgcaller.join_group_call(
+            #     chat_id,
+            #     stream,
+            # )
+            active_chats[chat_id] = {
+                "playing": True,
+                "original_chat_id": original_chat_id,
+                "stream_type": "video" if video else "audio"
+            }
+            return True
+        except NoActiveGroupCall:
+            LOGGER(__name__).error(f"No active voice chat in {chat_id}")
+            return False
+        except Exception as e:
+            LOGGER(__name__).error(f"Error joining call in {chat_id}: {e}")
             return False
 
     async def leave_call(self, chat_id: int):
@@ -180,7 +178,7 @@ class Call:
                     chat_id, 
                     next_track["file"], 
                     next_track.get("video", False)
-
+                )
             else:
                 # No more tracks, leave call
                 await self.leave_call(chat_id)
