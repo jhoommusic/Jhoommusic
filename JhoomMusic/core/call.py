@@ -13,7 +13,10 @@ from tgcaller.types.input_stream.quality import (
 
 from tgcaller.exceptions import NoActiveGroupCall
 
-import config
+# ---- FIX START ----
+# Instead of config.userbot/config.app, import real Client instances
+from JhoomMusic import app, userbot
+# ---- FIX END ----
 from ..logging import LOGGER
 
 # Global variables for queue management
@@ -22,7 +25,10 @@ active_chats = {}
 
 class Call:
     def __init__(self):
-        self.tgcaller = TgCaller(config.userbot if config.userbot else config.app, cache_duration=100)
+        # ---- FIX START ----
+        # Remove cache_duration argument (not accepted), and use real Client object
+        self.tgcaller = TgCaller(userbot if userbot else app)
+        # ---- FIX END ----
 
     async def pause_stream(self, chat_id: int):
         """Pause the current stream"""
