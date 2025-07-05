@@ -8,3 +8,4 @@ __pycache__/
 *.pyc
 log.txt
 database_backup.py
+bot_start_time.txt
