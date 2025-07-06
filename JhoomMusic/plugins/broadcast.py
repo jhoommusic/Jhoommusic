@@ -8,7 +8,7 @@ from JhoomMusic.misc import SUDOERS
 from JhoomMusic.utils.database.chats import get_served_chats, get_served_users
 from config import BANNED_USERS
 
-@app.on_message(filters.command(["broadcast", "gcast"]) & SUDOERS & ~BANNED_USERS)
+@app.on_message(filters.command(["broadcast", "gcast"]) & SUDOERS )
 async def broadcast_message(client, message: Message):
     """Broadcast message to all served chats"""
     
@@ -159,7 +159,7 @@ async def broadcast_message(client, message: Message):
         f"**Success Rate:** {(success/len(targets)*100):.1f}%"
     )
 
-@app.on_message(filters.command(["fcast", "fbroadcast"]) & SUDOERS & ~BANNED_USERS)
+@app.on_message(filters.command(["fcast", "fbroadcast"]) & SUDOERS )
 async def forward_broadcast(client, message: Message):
     """Forward broadcast (preserves original formatting)"""
     
@@ -217,7 +217,7 @@ async def forward_broadcast(client, message: Message):
         f"**Success Rate:** {(success/len(targets)*100):.1f}%"
     )
 
-@app.on_message(filters.command(["stats", "gstats"]) & SUDOERS & ~BANNED_USERS)
+@app.on_message(filters.command(["stats", "gstats"]) & SUDOERS )
 async def global_stats(client, message: Message):
     """Show global bot statistics"""
     

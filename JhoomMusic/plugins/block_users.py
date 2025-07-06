@@ -9,7 +9,7 @@ from config import BANNED_USERS, OWNER_ID
 # Global blocked users list
 BLOCKED_USERS = []
 
-@app.on_message(filters.command(["block"]) & SUDOERS & ~BANNED_USERS)
+@app.on_message(filters.command(["block"]) & SUDOERS )
 async def block_user(client, message: Message):
     """Block user from using the bot"""
     
@@ -55,7 +55,7 @@ async def block_user(client, message: Message):
     else:
         await message.reply_text("❌ **User is already blocked!**")
 
-@app.on_message(filters.command(["unblock"]) & SUDOERS & ~BANNED_USERS)
+@app.on_message(filters.command(["unblock"]) & SUDOERS )
 async def unblock_user(client, message: Message):
     """Unblock user from using the bot"""
     
@@ -97,7 +97,7 @@ async def unblock_user(client, message: Message):
     else:
         await message.reply_text("❌ **User is not blocked!**")
 
-@app.on_message(filters.command(["blockedusers", "blocklist"]) & SUDOERS & ~BANNED_USERS)
+@app.on_message(filters.command(["blockedusers", "blocklist"]) & SUDOERS )
 async def blocked_users_list(client, message: Message):
     """Show list of blocked users"""
     
@@ -120,7 +120,7 @@ async def blocked_users_list(client, message: Message):
     
     await message.reply_text(blocked_text)
 
-@app.on_message(filters.command(["clearblocked"]) & SUDOERS & ~BANNED_USERS)
+@app.on_message(filters.command(["clearblocked"]) & SUDOERS )
 async def clear_blocked_users(client, message: Message):
     """Clear all blocked users"""
     

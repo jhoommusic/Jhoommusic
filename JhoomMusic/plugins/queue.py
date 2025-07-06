@@ -9,7 +9,7 @@ from config import BANNED_USERS
 # Import queue from play.py
 from JhoomMusic.plugins.play import queues
 
-@app.on_message(filters.command(["queue", "q", "playlist"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["queue", "q", "playlist"]) & filters.group )
 async def show_queue(client, message: Message):
     """Show current queue with detailed information"""
     chat_id = message.chat.id
@@ -229,7 +229,7 @@ async def show_queue_callback(client, callback_query: CallbackQuery, chat_id: in
     except Exception as e:
         await callback_query.answer(f"Error: {str(e)}", show_alert=True)
 
-@app.on_message(filters.command(["remove", "rm"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["remove", "rm"]) & filters.group )
 @AdminRightsCheck
 async def remove_from_queue(client, message: Message, _, chat_id):
     """Remove specific track from queue"""
@@ -267,7 +267,7 @@ async def remove_from_queue(client, message: Message, _, chat_id):
     except Exception as e:
         await message.reply_text(f"❌ **Error:** {str(e)}")
 
-@app.on_message(filters.command(["move", "mv"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["move", "mv"]) & filters.group )
 @AdminRightsCheck
 async def move_in_queue(client, message: Message, _, chat_id):
     """Move track to different position in queue"""

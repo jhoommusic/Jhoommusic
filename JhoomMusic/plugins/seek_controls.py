@@ -6,7 +6,7 @@ from JhoomMusic.utils.decorators import AdminRightsCheck
 from JhoomMusic.utils.formatters import seconds_to_min
 from config import BANNED_USERS
 
-@app.on_message(filters.command(["seek"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["seek"]) & filters.group )
 @AdminRightsCheck
 async def seek_command(client, message: Message, _, chat_id):
     """Seek to specific position in track"""
@@ -71,7 +71,7 @@ async def seek_command(client, message: Message, _, chat_id):
             "• `1:05:30` (hours:minutes:seconds)"
         )
 
-@app.on_message(filters.command(["seekback", "rewind"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["seekback", "rewind"]) & filters.group )
 @AdminRightsCheck
 async def seekback_command(client, message: Message, _, chat_id):
     """Seek backwards in track"""
@@ -113,7 +113,7 @@ async def seekback_command(client, message: Message, _, chat_id):
             "Use format like: `30` or `1:30`"
         )
 
-@app.on_message(filters.command(["seekforward", "fastforward"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["seekforward", "fastforward"]) & filters.group )
 @AdminRightsCheck
 async def seekforward_command(client, message: Message, _, chat_id):
     """Seek forward in track"""
@@ -180,7 +180,7 @@ async def seek_forward_callback(client, callback_query):
     # In actual implementation, this would call TgCaller seek function
     # await Jhoom.seek_stream(chat_id, seconds)
 
-@app.on_message(filters.command(["position", "pos"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["position", "pos"]) & filters.group )
 async def current_position(client, message: Message):
     """Show current playback position"""
     
@@ -224,7 +224,7 @@ def create_progress_bar(current: int, total: int, length: int = 20) -> str:
     
     return f"{bar} {percentage}%"
 
-@app.on_message(filters.command(["seekhelp"]) & ~BANNED_USERS)
+@app.on_message(filters.command(["seekhelp"]) )
 async def seek_help(client, message: Message):
     """Show seek commands help"""
     

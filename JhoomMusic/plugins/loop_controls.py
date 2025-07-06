@@ -8,7 +8,7 @@ from config import BANNED_USERS
 # Store loop settings for each chat
 LOOP_SETTINGS = {}
 
-@app.on_message(filters.command(["loop", "spiral"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["loop", "spiral"]) & filters.group )
 @AdminRightsCheck
 async def loop_command(client, message: Message, _, chat_id):
     """Control loop/spiral settings"""
@@ -152,7 +152,7 @@ async def loop_infinite_callback(client, callback_query):
         "Current track will repeat infinitely until stopped."
     )
 
-@app.on_message(filters.command(["loopinfo"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["loopinfo"]) & filters.group )
 async def loop_info(client, message: Message):
     """Show detailed loop information"""
     

@@ -6,7 +6,7 @@ from JhoomMusic.core.call import Jhoom
 from JhoomMusic.utils.decorators import AdminRightsCheck
 from config import BANNED_USERS
 
-@app.on_message(filters.command(["pause"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["pause"]) & filters.group )
 @AdminRightsCheck
 async def pause_admin(client, message: Message, _, chat_id):
     """Pause the current stream"""
@@ -22,7 +22,7 @@ async def pause_admin(client, message: Message, _, chat_id):
     except Exception as e:
         await message.reply_text(f"❌ **Error:** {str(e)}")
 
-@app.on_message(filters.command(["resume"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["resume"]) & filters.group )
 @AdminRightsCheck
 async def resume_admin(client, message: Message, _, chat_id):
     """Resume the paused stream"""
@@ -38,7 +38,7 @@ async def resume_admin(client, message: Message, _, chat_id):
     except Exception as e:
         await message.reply_text(f"❌ **Error:** {str(e)}")
 
-@app.on_message(filters.command(["stop", "end"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["stop", "end"]) & filters.group )
 @AdminRightsCheck
 async def stop_admin(client, message: Message, _, chat_id):
     """Stop the current stream"""
@@ -54,7 +54,7 @@ async def stop_admin(client, message: Message, _, chat_id):
     except Exception as e:
         await message.reply_text(f"❌ **Error:** {str(e)}")
 
-@app.on_message(filters.command(["skip", "next"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["skip", "next"]) & filters.group )
 @AdminRightsCheck
 async def skip_admin(client, message: Message, _, chat_id):
     """Skip to next track"""
@@ -81,7 +81,7 @@ async def skip_admin(client, message: Message, _, chat_id):
     except Exception as e:
         await message.reply_text(f"❌ **Error:** {str(e)}")
 
-@app.on_message(filters.command(["mute"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["mute"]) & filters.group )
 @AdminRightsCheck
 async def mute_admin(client, message: Message, _, chat_id):
     """Mute the stream"""
@@ -97,7 +97,7 @@ async def mute_admin(client, message: Message, _, chat_id):
     except Exception as e:
         await message.reply_text(f"❌ **Error:** {str(e)}")
 
-@app.on_message(filters.command(["unmute"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["unmute"]) & filters.group )
 @AdminRightsCheck
 async def unmute_admin(client, message: Message, _, chat_id):
     """Unmute the stream"""
@@ -113,7 +113,7 @@ async def unmute_admin(client, message: Message, _, chat_id):
     except Exception as e:
         await message.reply_text(f"❌ **Error:** {str(e)}")
 
-@app.on_message(filters.command(["queue", "q"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["queue", "q"]) & filters.group )
 async def show_queue(client, message: Message):
     """Show current queue"""
     chat_id = message.chat.id
@@ -136,7 +136,7 @@ async def show_queue(client, message: Message):
     except Exception as e:
         await message.reply_text(f"❌ **Error:** {str(e)}")
 
-@app.on_message(filters.command(["shuffle"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["shuffle"]) & filters.group )
 @AdminRightsCheck
 async def shuffle_queue(client, message: Message, _, chat_id):
     """Shuffle the queue"""
@@ -153,7 +153,7 @@ async def shuffle_queue(client, message: Message, _, chat_id):
     except Exception as e:
         await message.reply_text(f"❌ **Error:** {str(e)}")
 
-@app.on_message(filters.command(["clearqueue", "clear"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["clearqueue", "clear"]) & filters.group )
 @AdminRightsCheck
 async def clear_queue(client, message: Message, _, chat_id):
     """Clear the queue"""

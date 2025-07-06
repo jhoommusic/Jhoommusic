@@ -3,7 +3,7 @@ import os
 import random
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
-from tgcaller.exceptions import NoActiveGroupCall, TelegramServerError
+from tgcaller.exceptions import NoActiveGroupCall
 
 from JhoomMusic import app, userbot
 from JhoomMusic.core.call import Jhoom
@@ -15,7 +15,7 @@ from config import BANNED_USERS, BOT_NAME, DURATION_LIMIT_MIN
 # Global queue storage
 queues = {}
 
-@app.on_message(filters.command(["play", "p"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["play", "p"]) & filters.group & ~filters.user(BANNED_USERS))
 async def play_command(client, message: Message):
     """Handle /play command"""
     if len(message.command) < 2:
@@ -112,7 +112,6 @@ async def play_command(client, message: Message):
                 "❌ **Voice chat is not active!**\n\n"
                 "Please start a voice chat first and try again."
             )
-        except TelegramServerError:
             return await mystic.edit_text(
                 "❌ **Telegram Server Error!**\n\n"
                 "Please try again later."
@@ -123,7 +122,7 @@ async def play_command(client, message: Message):
     except Exception as e:
         return await mystic.edit_text(f"❌ **Unexpected Error:** {str(e)}")
 
-@app.on_message(filters.command(["vplay", "videoplay"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["vplay", "videoplay"]) & filters.group & ~filters.user(BANNED_USERS))
 async def video_play_command(client, message: Message):
     """Handle /vplay command for video playback"""
     if len(message.command) < 2:

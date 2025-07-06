@@ -9,7 +9,7 @@ from config import BANNED_USERS, OWNER_ID
 # Global banned users list
 GLOBAL_BANNED_USERS = []
 
-@app.on_message(filters.command(["gban", "globalban"]) & SUDOERS & ~BANNED_USERS)
+@app.on_message(filters.command(["gban", "globalban"]) & SUDOERS )
 async def global_ban_user(client, message: Message):
     """Globally ban user from all groups"""
     
@@ -73,7 +73,7 @@ async def global_ban_user(client, message: Message):
         f"**{user_name}** is now banned from all groups using this bot."
     )
 
-@app.on_message(filters.command(["ungban", "unglobalban"]) & SUDOERS & ~BANNED_USERS)
+@app.on_message(filters.command(["ungban", "unglobalban"]) & SUDOERS )
 async def global_unban_user(client, message: Message):
     """Remove user from global ban list"""
     
@@ -122,7 +122,7 @@ async def global_unban_user(client, message: Message):
         f"**{user_name}** can now use the bot in all groups again."
     )
 
-@app.on_message(filters.command(["gbannedusers", "gbanlist"]) & SUDOERS & ~BANNED_USERS)
+@app.on_message(filters.command(["gbannedusers", "gbanlist"]) & SUDOERS )
 async def global_banned_users_list(client, message: Message):
     """Show list of globally banned users"""
     
@@ -146,7 +146,7 @@ async def global_banned_users_list(client, message: Message):
     
     await message.reply_text(gban_text)
 
-@app.on_message(filters.command(["cleargbans"]) & SUDOERS & ~BANNED_USERS)
+@app.on_message(filters.command(["cleargbans"]) & SUDOERS )
 async def clear_global_bans(client, message: Message):
     """Clear all global bans"""
     
@@ -161,7 +161,7 @@ async def clear_global_bans(client, message: Message):
         f"**Removed:** {count} users"
     )
 
-@app.on_message(filters.command(["gbaninfo"]) & SUDOERS & ~BANNED_USERS)
+@app.on_message(filters.command(["gbaninfo"]) & SUDOERS )
 async def global_ban_info(client, message: Message):
     """Get information about a globally banned user"""
     

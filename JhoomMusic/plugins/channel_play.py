@@ -12,7 +12,7 @@ from config import BANNED_USERS, DURATION_LIMIT_MIN
 # Store channel connections
 CHANNEL_CONNECTIONS = {}
 
-@app.on_message(filters.command(["channelplay", "cplay"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["channelplay", "cplay"]) & filters.group )
 @AdminRightsCheck
 async def channel_play_command(client, message: Message, _, chat_id):
     """Connect channel to group for music streaming"""
@@ -79,7 +79,7 @@ async def channel_play_command(client, message: Message, _, chat_id):
     except Exception as e:
         await message.reply_text(f"❌ **Error:** {str(e)}")
 
-@app.on_message(filters.command(["cplay"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["cplay"]) & filters.group )
 async def channel_audio_play(client, message: Message):
     """Stream audio in connected channel"""
     
@@ -157,7 +157,7 @@ async def channel_audio_play(client, message: Message):
     except Exception as e:
         await mystic.edit_text(f"❌ **Error:** {str(e)}")
 
-@app.on_message(filters.command(["cvplay"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["cvplay"]) & filters.group )
 async def channel_video_play(client, message: Message):
     """Stream video in connected channel"""
     
@@ -221,7 +221,7 @@ async def channel_video_play(client, message: Message):
     except Exception as e:
         await mystic.edit_text(f"❌ **Error:** {str(e)}")
 
-@app.on_message(filters.command(["cplayforce"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["cplayforce"]) & filters.group )
 @AdminRightsCheck
 async def channel_force_play(client, message: Message, _, chat_id):
     """Force play new track in channel"""
@@ -277,7 +277,7 @@ async def channel_force_play(client, message: Message, _, chat_id):
     except Exception as e:
         await mystic.edit_text(f"❌ **Error:** {str(e)}")
 
-@app.on_message(filters.command(["channelstop", "cstop"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["channelstop", "cstop"]) & filters.group )
 @AdminRightsCheck
 async def channel_stop(client, message: Message, _, chat_id):
     """Stop channel streaming"""
@@ -299,7 +299,7 @@ async def channel_stop(client, message: Message, _, chat_id):
     except Exception as e:
         await message.reply_text(f"❌ **Error:** {str(e)}")
 
-@app.on_message(filters.command(["channeldisconnect", "cdisconnect"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["channeldisconnect", "cdisconnect"]) & filters.group )
 @AdminRightsCheck
 async def disconnect_channel(client, message: Message, _, chat_id):
     """Disconnect channel from group"""

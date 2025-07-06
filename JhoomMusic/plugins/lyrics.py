@@ -13,7 +13,7 @@ LYRICS_APIS = [
     "https://some-random-api.ml/lyrics?title={title}",
 ]
 
-@app.on_message(filters.command(["lyrics", "lyric"]) & ~BANNED_USERS)
+@app.on_message(filters.command(["lyrics", "lyric"]) & filters.group)
 async def get_lyrics(client, message: Message):
     """Get song lyrics"""
     
@@ -137,7 +137,7 @@ async def search_lyrics(artist: str, title: str) -> str:
     
     return None
 
-@app.on_message(filters.command(["songinfo", "trackinfo"]) & ~BANNED_USERS)
+@app.on_message(filters.command(["lyrics", "lyric"]) & filters.group)
 async def get_song_info(client, message: Message):
     """Get detailed song information"""
     

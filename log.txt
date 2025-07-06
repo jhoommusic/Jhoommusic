@@ -1,0 +1,186 @@
+[05-Jul-25 19:10:40 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 19:12:07 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 19:12:52 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 19:13:45 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 19:14:57 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 19:15:42 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 19:16:47 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 19:16:47 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 19:16:47 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 19:17:23 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 19:17:23 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 19:17:23 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 19:18:06 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 19:18:06 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 19:18:06 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 19:18:35 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 19:18:35 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 19:18:35 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 19:19:40 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 19:19:40 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 19:19:40 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 19:19:40 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:14:15 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:14:15 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:14:15 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:14:15 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:19:45 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:19:45 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:19:45 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:19:45 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:21:43 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:21:43 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:21:43 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:21:43 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:23:06 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:23:06 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:23:06 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:23:06 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:25:09 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:25:09 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:25:09 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:25:09 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:25:50 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:25:50 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:25:50 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:25:50 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:26:43 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:26:43 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:26:43 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:26:43 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:27:22 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:27:22 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:27:22 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:27:22 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:29:24 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:29:24 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:29:24 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:29:24 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:29:59 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:29:59 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:29:59 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:29:59 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:30:53 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:30:53 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:30:53 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:30:53 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:31:38 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:31:38 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:31:38 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:31:38 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:37:28 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:37:28 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:37:28 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:37:28 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:38:32 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:38:32 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:38:32 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:38:32 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:39:38 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:39:38 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:39:38 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:39:38 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:41:13 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:41:13 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:41:13 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:41:13 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:41:53 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:41:53 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:41:53 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:41:53 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:42:50 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:42:50 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:42:50 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:42:50 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:44:03 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:44:03 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:44:03 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:44:03 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:45:09 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:45:09 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:45:09 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:45:09 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:45:53 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:45:54 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:45:54 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:45:54 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:46:35 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:46:35 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:46:35 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:46:35 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:47:17 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:47:17 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:47:17 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:47:17 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 20:47:53 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 20:47:53 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 20:47:53 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 20:47:53 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 21:02:13 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 21:02:13 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 21:02:13 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 21:02:13 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 21:02:52 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 21:02:53 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 21:02:53 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 21:02:53 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 21:05:55 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 21:05:55 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 21:05:55 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 21:05:55 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 21:11:32 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 21:11:32 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 21:11:32 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 21:11:32 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 21:38:44 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 21:48:01 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 21:48:01 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 21:48:01 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 21:48:01 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 21:49:01 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 21:49:01 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 21:49:01 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 21:49:01 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 21:56:47 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 21:56:47 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 21:56:47 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 21:56:47 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 21:58:05 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 21:58:05 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 21:58:05 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 21:58:05 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 21:59:33 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 21:59:33 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 21:59:33 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 21:59:33 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 22:02:14 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 22:02:14 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 22:02:14 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 22:02:14 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 22:04:20 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 22:04:20 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 22:04:20 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 22:04:20 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 22:05:34 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 22:05:34 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 22:05:34 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 22:05:34 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 22:07:18 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 22:07:18 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 22:07:18 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 22:07:18 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 22:08:36 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 22:08:36 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 22:08:36 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 22:08:36 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 22:13:03 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 22:13:03 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 22:13:03 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 22:13:03 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 22:17:00 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 22:17:00 - INFO] - JhoomMusic.core.git - Git Client Found
+[05-Jul-25 22:17:00 - INFO] - JhoomMusic.misc - Local Database Initialized
+[05-Jul-25 22:17:00 - INFO] - JhoomMusic - JhoomMusic Bot Initialized Successfully
+[05-Jul-25 22:18:49 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 22:20:53 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled
+[05-Jul-25 22:22:01 - WARNING] - JhoomMusic - STRING_SESSION not found, userbot disabled

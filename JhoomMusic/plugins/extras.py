@@ -4,7 +4,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from JhoomMusic import app
 from config import BANNED_USERS, BOT_NAME
 
-@app.on_message(filters.command(["lyrics", "lyric"]) & ~BANNED_USERS)
+@app.on_message(filters.command(["lyrics", "lyric"]) )
 async def get_lyrics(client, message: Message):
     """Get song lyrics"""
     if len(message.command) < 2:
@@ -22,7 +22,7 @@ async def get_lyrics(client, message: Message):
         ])
     )
 
-@app.on_message(filters.command(["search"]) & ~BANNED_USERS)
+@app.on_message(filters.command(["search"]) )
 async def search_songs(client, message: Message):
     """Search for songs"""
     if len(message.command) < 2:
@@ -40,7 +40,7 @@ async def search_songs(client, message: Message):
         ])
     )
 
-@app.on_message(filters.command(["download", "dl"]) & ~BANNED_USERS)
+@app.on_message(filters.command(["download", "dl"]) )
 async def download_song(client, message: Message):
     """Download audio file"""
     if len(message.command) < 2:
@@ -58,7 +58,7 @@ async def download_song(client, message: Message):
         ])
     )
 
-@app.on_message(filters.command(["radio"]) & ~BANNED_USERS)
+@app.on_message(filters.command(["radio"]) )
 async def play_radio(client, message: Message):
     """Play radio stations"""
     radio_text = """
@@ -81,7 +81,7 @@ async def play_radio(client, message: Message):
         ])
     )
 
-@app.on_message(filters.command(["playlist", "pl"]) & ~BANNED_USERS)
+@app.on_message(filters.command(["playlist", "pl"]) )
 async def manage_playlist(client, message: Message):
     """Manage playlists"""
     playlist_text = """
@@ -104,7 +104,7 @@ async def manage_playlist(client, message: Message):
         ])
     )
 
-@app.on_message(filters.command(["favorites", "fav"]) & ~BANNED_USERS)
+@app.on_message(filters.command(["favorites", "fav"]) )
 async def manage_favorites(client, message: Message):
     """Manage favorite songs"""
     favorites_text = """
@@ -126,7 +126,7 @@ async def manage_favorites(client, message: Message):
         ])
     )
 
-@app.on_message(filters.command(["history"]) & ~BANNED_USERS)
+@app.on_message(filters.command(["history"]) )
 async def show_history(client, message: Message):
     """Show play history"""
     history_text = """
@@ -149,7 +149,7 @@ async def show_history(client, message: Message):
         ])
     )
 
-@app.on_message(filters.command(["nowplaying", "np"]) & ~BANNED_USERS)
+@app.on_message(filters.command(["nowplaying", "np"]) )
 async def now_playing(client, message: Message):
     """Show current track info"""
     chat_id = message.chat.id
@@ -184,7 +184,7 @@ async def now_playing(client, message: Message):
         ])
     )
 
-@app.on_message(filters.command(["seek"]) & ~BANNED_USERS)
+@app.on_message(filters.command(["seek"]) )
 async def seek_track(client, message: Message):
     """Seek to position in track"""
     if len(message.command) < 2:
@@ -204,7 +204,7 @@ async def seek_track(client, message: Message):
         ])
     )
 
-@app.on_message(filters.command(["speed"]) & ~BANNED_USERS)
+@app.on_message(filters.command(["speed"]) )
 async def adjust_speed(client, message: Message):
     """Adjust playback speed"""
     if len(message.command) < 2:

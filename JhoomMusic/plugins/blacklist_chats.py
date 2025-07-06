@@ -6,7 +6,7 @@ from JhoomMusic.misc import SUDOERS
 from JhoomMusic.utils.database.chats import blacklist_chat, whitelist_chat, is_blacklisted_chat, get_served_chats
 from config import BANNED_USERS
 
-@app.on_message(filters.command(["blacklistchat", "blchat"]) & SUDOERS & ~BANNED_USERS)
+@app.on_message(filters.command(["blacklistchat", "blchat"]) & SUDOERS )
 async def blacklist_chat_command(client, message: Message):
     """Blacklist a chat from using the bot"""
     
@@ -48,7 +48,7 @@ async def blacklist_chat_command(client, message: Message):
         f"**This chat can no longer use the bot.**"
     )
 
-@app.on_message(filters.command(["whitelistchat", "wlchat"]) & SUDOERS & ~BANNED_USERS)
+@app.on_message(filters.command(["whitelistchat", "wlchat"]) & SUDOERS )
 async def whitelist_chat_command(client, message: Message):
     """Remove chat from blacklist"""
     
@@ -90,7 +90,7 @@ async def whitelist_chat_command(client, message: Message):
         f"**This chat can now use the bot again.**"
     )
 
-@app.on_message(filters.command(["blacklistedchats", "blchats"]) & SUDOERS & ~BANNED_USERS)
+@app.on_message(filters.command(["blacklistedchats", "blchats"]) & SUDOERS )
 async def blacklisted_chats_list(client, message: Message):
     """Show list of blacklisted chats"""
     
@@ -131,7 +131,7 @@ async def blacklisted_chats_list(client, message: Message):
     except Exception as e:
         await mystic.edit_text(f"❌ **Error:** {str(e)}")
 
-@app.on_message(filters.command(["clearblacklist"]) & SUDOERS & ~BANNED_USERS)
+@app.on_message(filters.command(["clearblacklist"]) & SUDOERS )
 async def clear_blacklisted_chats(client, message: Message):
     """Clear all blacklisted chats"""
     

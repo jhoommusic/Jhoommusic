@@ -30,7 +30,7 @@ I'm a powerful music bot that can play high-quality music in your Telegram group
 **🆘 Need help?** Join our [Support Chat]({SUPPORT_CHAT})
 """
 
-@app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
+@app.on_message(filters.command(["start"]) & filters.private & ~filters.user(BANNED_USERS))
 async def start_pm(client, message: Message):
     """Handle /start command in private chat"""
     await message.reply_photo(
@@ -54,7 +54,7 @@ async def start_pm(client, message: Message):
         ])
     )
 
-@app.on_message(filters.command(["start"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["start"]) & filters.group & ~filters.user(BANNED_USERS))
 async def start_gp(client, message: Message):
     """Handle /start command in group chat"""
     out = f"""
@@ -162,7 +162,7 @@ async def back_to_start_group(client, callback_query):
         ])
     )
 
-@app.on_message(filters.command(["help"]) & ~BANNED_USERS)
+@app.on_message(filters.command(["help"]) & ~filters.user(BANNED_USERS))
 async def help_com(client, message: Message):
     """Handle /help command - redirect to commands"""
     await message.reply_text(

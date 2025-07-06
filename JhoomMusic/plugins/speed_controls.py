@@ -8,7 +8,7 @@ from config import BANNED_USERS
 # Store speed settings for each chat
 SPEED_SETTINGS = {}
 
-@app.on_message(filters.command(["speed"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["speed"]) & filters.group )
 @AdminRightsCheck
 async def speed_command(client, message: Message, _, chat_id):
     """Adjust playback speed in group"""
@@ -85,7 +85,7 @@ async def speed_command(client, message: Message, _, chat_id):
             "**Examples:** `/speed 1.5` or `/speed 0.75`"
         )
 
-@app.on_message(filters.command(["cspeed", "channelspeed"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["cspeed", "channelspeed"]) & filters.group )
 @AdminRightsCheck
 async def channel_speed_command(client, message: Message, _, chat_id):
     """Adjust playback speed in connected channel"""
@@ -201,7 +201,7 @@ async def channel_speed_callback(client, callback_query):
     except ValueError:
         await callback_query.answer("❌ Invalid speed value", show_alert=True)
 
-@app.on_message(filters.command(["speedreset"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["speedreset"]) & filters.group )
 @AdminRightsCheck
 async def speed_reset(client, message: Message, _, chat_id):
     """Reset speed to normal (1x)"""
@@ -214,7 +214,7 @@ async def speed_reset(client, message: Message, _, chat_id):
         "Playback speed has been reset to default."
     )
 
-@app.on_message(filters.command(["speedinfo"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["speedinfo"]) & filters.group )
 async def speed_info(client, message: Message):
     """Show current speed information"""
     

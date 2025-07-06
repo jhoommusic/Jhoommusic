@@ -10,7 +10,7 @@ from JhoomMusic.misc import SUDOERS
 from JhoomMusic.utils.pastebin import paste
 from config import BANNED_USERS, OWNER_ID
 
-@app.on_message(filters.command(["eval", "py"]) & filters.user(OWNER_ID) & ~BANNED_USERS)
+@app.on_message(filters.command(["eval", "py"]) & filters.user(OWNER_ID) )
 async def eval_code(client, message: Message):
     """Execute Python code (Owner only)"""
     
@@ -86,7 +86,7 @@ async def eval_code(client, message: Message):
         else:
             await mystic.edit_text(error_text)
 
-@app.on_message(filters.command(["exec", "bash"]) & filters.user(OWNER_ID) & ~BANNED_USERS)
+@app.on_message(filters.command(["exec", "bash"]) & filters.user(OWNER_ID) )
 async def exec_code(client, message: Message):
     """Execute Python code with exec (Owner only)"""
     
@@ -171,7 +171,7 @@ async def exec_code(client, message: Message):
         else:
             await mystic.edit_text(error_text)
 
-@app.on_message(filters.command(["gitpull", "pull"]) & SUDOERS & ~BANNED_USERS)
+@app.on_message(filters.command(["gitpull", "pull"]) & SUDOERS )
 async def git_pull(client, message: Message):
     """Pull latest changes from git"""
     
@@ -210,7 +210,7 @@ async def git_pull(client, message: Message):
     except Exception as e:
         await mystic.edit_text(f"❌ **Error:** {str(e)}")
 
-@app.on_message(filters.command(["speedtest", "speed"]) & SUDOERS & ~BANNED_USERS)
+@app.on_message(filters.command(["speedtest", "speed"]) & SUDOERS )
 async def speed_test(client, message: Message):
     """Run internet speed test"""
     
@@ -266,7 +266,7 @@ async def speed_test(client, message: Message):
     except Exception as e:
         await mystic.edit_text(f"❌ **Speed test failed:** {str(e)}")
 
-@app.on_message(filters.command(["pip"]) & filters.user(OWNER_ID) & ~BANNED_USERS)
+@app.on_message(filters.command(["pip"]) & filters.user(OWNER_ID) )
 async def pip_install(client, message: Message):
     """Install Python packages with pip"""
     
@@ -302,7 +302,7 @@ async def pip_install(client, message: Message):
     except Exception as e:
         await mystic.edit_text(f"❌ **Error:** {str(e)}")
 
-@app.on_message(filters.command(["db", "database"]) & filters.user(OWNER_ID) & ~BANNED_USERS)
+@app.on_message(filters.command(["db", "database"]) & filters.user(OWNER_ID) )
 async def database_info(client, message: Message):
     """Show database information"""
     

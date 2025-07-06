@@ -1,3 +1,31 @@
+import os
+getenv = os.getenv
+import os
+from dotenv import load_dotenv
+load_dotenv()
+DURATION_LIMIT = int(os.getenv("DURATION_LIMIT", "60"))
+DURATION_LIMIT_MIN = int(DURATION_LIMIT // 60)
+PING_IMG_URL = os.getenv("PING_IMG_URL", "https://telegra.ph/file/68e5f6e5b3d5c719b634d.jpg")
+BANNED_USERS = set()
+SUPPORT_CHANNEL = os.getenv("SUPPORT_CHANNEL", "https://t.me/JhoomMusicChannel")
+SUPPORT_CHANNEL = os.getenv("SUPPORT_CHANNEL", "https://t.me/JhoomMusicChannel")
+SUPPORT_CHAT = os.getenv("SUPPORT_CHAT", "https://t.me/JhoomMusicSupport")
+Support_CHAT = os.getenv("SUPPORT_CHAT", "https://t.me/JhoomMusicSupport")
+BOT_NAME = os.getenv("BOT_NAME", "JhoomMusic")
+BOT_NAME = os.getenv("BOT_NAME", "JhoomMusic")
+START_IMG_URL = os.getenv("START_IMG_URL", "https://telegra.ph/file/68e5f6e5b3d5c719b634d.jpg")
+load_dotenv()
+DURATION_LIMIT = int(os.getenv("DURATION_LIMIT", "60"))
+DURATION_LIMIT_MIN = int(DURATION_LIMIT // 60)
+PING_IMG_URL = os.getenv("PING_IMG_URL", "https://telegra.ph/file/68e5f6e5b3d5c719b634d.jpg")
+BANNED_USERS = set()
+SUPPORT_CHANNEL = os.getenv("SUPPORT_CHANNEL", "https://t.me/JhoomMusicChannel")
+SUPPORT_CHANNEL = os.getenv("SUPPORT_CHANNEL", "https://t.me/JhoomMusicChannel")
+SUPPORT_CHAT = os.getenv("SUPPORT_CHAT", "https://t.me/JhoomMusicSupport")
+Support_CHAT = os.getenv("SUPPORT_CHAT", "https://t.me/JhoomMusicSupport")
+BOT_NAME = os.getenv("BOT_NAME", "JhoomMusic")
+BOT_NAME = os.getenv("BOT_NAME", "JhoomMusic")
+START_IMG_URL = os.getenv("START_IMG_URL", "https://telegra.ph/file/68e5f6e5b3d5c719b634d.jpg")
 from pyrogram import Client
 
 api_id = 123456
@@ -35,3 +63,11 @@ BANNED_USERS = []
 
 # Bot Username
 BOT_USERNAME = 'your_bot_username_here'
+DURATION_LIMIT_MIN = int(getenv('DURATION_LIMIT', '60'))
+
+# Additional Configs
+PING_IMG_URL = getenv("PING_IMG_URL", "https://telegra.ph/file/60752df1ea8f6d24909f7.jpg")
+START_IMG_URL = getenv("START_IMG_URL", "https://telegra.ph/file/60752df1ea8f6d24909f7.jpg")
+BOT_NAME = getenv("BOT_NAME", "JhoomMusic")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/JhoomMusicSupport")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/JhoomMusicChannel")

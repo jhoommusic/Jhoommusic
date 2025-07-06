@@ -8,7 +8,7 @@ from JhoomMusic.utils.database.language import get_lang, set_lang, get_languages
 from JhoomMusic.utils.inline import settings_panel, quality_panel, language_panel
 from config import BANNED_USERS
 
-@app.on_message(filters.command(["settings"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["settings"]) & filters.group)
 @AdminRightsCheck
 async def settings_command(client, message: Message, _, chat_id):
     """Show settings panel"""
@@ -272,7 +272,7 @@ async def current_volume_callback(client, callback_query: CallbackQuery):
         show_alert=True
     )
 
-@app.on_message(filters.command(["volume", "vol"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["settings"]) & filters.group)
 @AdminRightsCheck
 async def volume_command(client, message: Message, _, chat_id):
     """Handle volume command"""
@@ -293,7 +293,7 @@ async def volume_command(client, message: Message, _, chat_id):
     except ValueError:
         await message.reply_text("❌ **Please provide a valid number**")
 
-@app.on_message(filters.command(["language", "lang"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["settings"]) & filters.group)
 @AdminRightsCheck
 async def language_command(client, message: Message, _, chat_id):
     """Handle language command"""

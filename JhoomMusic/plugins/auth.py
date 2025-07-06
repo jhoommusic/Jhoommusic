@@ -6,7 +6,7 @@ from JhoomMusic.utils.decorators import AdminRightsCheck
 from JhoomMusic.utils.database.database import save_authuser, delete_authuser, _get_authuser_names, is_nonadmin
 from config import BANNED_USERS
 
-@app.on_message(filters.command(["auth"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["auth"]) & filters.group)
 @AdminRightsCheck
 async def auth_user(client, message: Message, _, chat_id):
     """Authorize user to use music commands"""
@@ -44,7 +44,7 @@ async def auth_user(client, message: Message, _, chat_id):
         f"**{user_name}** can now use music commands in this group."
     )
 
-@app.on_message(filters.command(["unauth"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["auth"]) & filters.group)
 @AdminRightsCheck
 async def unauth_user(client, message: Message, _, chat_id):
     """Remove user authorization"""
@@ -82,7 +82,7 @@ async def unauth_user(client, message: Message, _, chat_id):
         f"**{user_name}** can no longer use music commands in this group."
     )
 
-@app.on_message(filters.command(["authusers", "authlist"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["auth"]) & filters.group)
 async def auth_users_list(client, message: Message):
     """Show list of authorized users"""
     
@@ -104,7 +104,7 @@ async def auth_users_list(client, message: Message):
     
     await message.reply_text(auth_text)
 
-@app.on_message(filters.command(["clearauth"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["auth"]) & filters.group)
 @AdminRightsCheck
 async def clear_auth_users(client, message: Message, _, chat_id):
     """Clear all authorized users"""

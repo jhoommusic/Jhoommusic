@@ -34,7 +34,7 @@ def get_readable_time(seconds: int) -> str:
     
     return ping_time
 
-@app.on_message(filters.command(["ping", "alive"]) & ~BANNED_USERS)
+@app.on_message(filters.command(["ping", "alive"]) & ~filters.user(BANNED_USERS))
 async def ping_pong(client, message: Message):
     """Handle ping command"""
     start = time.time()
@@ -123,7 +123,7 @@ async def ping_refresh(client, callback_query):
     
     await callback_query.answer("🔄 Stats refreshed!")
 
-@app.on_message(filters.command(["stats", "statistics"]) & ~BANNED_USERS)
+@app.on_message(filters.command(["stats", "statistics"]) & ~filters.user(BANNED_USERS))
 async def bot_stats(client, message: Message):
     """Show detailed bot statistics"""
     # Get system info

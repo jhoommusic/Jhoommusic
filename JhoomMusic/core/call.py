@@ -8,7 +8,6 @@ from tgcaller import TgCaller
 from tgcaller.types.input_stream.quality import (
     HighQualityAudio,
     HighQualityVideo,
-    LowQualityVideo,
     MediumQualityVideo,
 )
 

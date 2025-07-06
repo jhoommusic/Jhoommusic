@@ -167,7 +167,7 @@ COMMAND_DETAILS = {
     }
 }
 
-@app.on_message(filters.command(["commands", "cmd", "help"]) & ~BANNED_USERS)
+@app.on_message(filters.command(["commands", "cmd", "help"]) )
 async def show_commands(client, message: Message):
     """Show comprehensive command interface exactly like the image"""
     
@@ -317,7 +317,7 @@ async def back_to_commands(client, callback_query: CallbackQuery):
     )
 
 # Quick access commands
-@app.on_message(filters.command(["quickhelp", "qhelp"]) & ~BANNED_USERS)
+@app.on_message(filters.command(["quickhelp", "qhelp"]) )
 async def quick_help(client, message: Message):
     """Show quick help with essential commands"""
     
@@ -356,7 +356,7 @@ async def quick_help(client, message: Message):
     )
 
 # Command search functionality
-@app.on_message(filters.command(["search_cmd", "findcmd"]) & ~BANNED_USERS)
+@app.on_message(filters.command(["search_cmd", "findcmd"]) )
 async def search_command(client, message: Message):
     """Search for specific commands"""
     

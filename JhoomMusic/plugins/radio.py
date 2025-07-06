@@ -52,7 +52,7 @@ RADIO_STATIONS = {
     }
 }
 
-@app.on_message(filters.command(["radio", "fm"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["radio", "fm"]) & filters.group )
 async def radio_command(client, message: Message):
     """Play radio stations"""
     
