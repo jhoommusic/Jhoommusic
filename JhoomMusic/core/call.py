@@ -1,168 +1,208 @@
-import config
-import asyncio
+"""
+Core voice chat handler using TgCaller
+"""
+
 from typing import Union, Dict, Optional
-from pyrogram import Client
-from pyrogram.types import Message
 from tgcaller import TgCaller
-from tgcaller.types.input_stream.quality import (
-    HighQualityAudio,
-    HighQualityVideo,
-    MediumQualityVideo,
-)
 from tgcaller.exceptions import NoActiveGroupCall
 
 from JhoomMusic import app, userbot
-from ..logging import LOGGER
+from JhoomMusic.logging import LOGGER
 
-# Global variables for queue management
-db = {}
-active_chats = {}
+# Global state
+db: Dict[int, list] = {}          # chat_id -> queue of tracks
+active_chats: Dict[int, dict] = {}  # chat_id -> current playing info
 
 
 class Call:
     def __init__(self):
-        # Use userbot if available, otherwise fall back to bot
+        # Prefer userbot for better stability in voice chats
         client = userbot if userbot else app
         self.tgcaller = TgCaller(client)
 
-    async def pause_stream(self, chat_id: int):
-        """Pause the current stream"""
+    # -------------------- Basic Controls --------------------
+
+    async def pause_stream(self, chat_id: int) -> bool:
         try:
             await self.tgcaller.pause_stream(chat_id)
+            if chat_id in active_chats:
+                active_chats[chat_id]["playing"] = False
             return True
         except Exception as e:
-            LOGGER(__name__).error(f"Error pausing stream in {chat_id}: {e}")
+            LOGGER(__name__).error(f"Pause error [{chat_id}]: {e}")
             return False
 
-    async def resume_stream(self, chat_id: int):
-        """Resume the paused stream"""
+    async def resume_stream(self, chat_id: int) -> bool:
         try:
             await self.tgcaller.resume_stream(chat_id)
-            return True
-        except Exception as e:
-            LOGGER(__name__).error(f"Error resuming stream in {chat_id}: {e}")
-            return False
-
-    async def stop_stream(self, chat_id: int):
-        """Stop the current stream and leave call"""
-        try:
-            await self.tgcaller.leave_group_call(chat_id)
-            if chat_id in db:
-                db[chat_id].clear()
             if chat_id in active_chats:
-                del active_chats[chat_id]
+                active_chats[chat_id]["playing"] = True
             return True
         except Exception as e:
-            LOGGER(__name__).error(f"Error stopping stream in {chat_id}: {e}")
+            LOGGER(__name__).error(f"Resume error [{chat_id}]: {e}")
             return False
 
-    async def skip_stream(self, chat_id: int, link: str, video: Union[bool, str] = None):
-        """Skip to next track"""
+    async def mute_stream(self, chat_id: int) -> bool:
         try:
-            # TODO: Implement proper stream change with AudioPiped / VideoPiped
-            # once tgcaller stream types are confirmed for this version
+            await self.tgcaller.mute_stream(chat_id)
             return True
         except Exception as e:
-            LOGGER(__name__).error(f"Error skipping stream in {chat_id}: {e}")
+            LOGGER(__name__).error(f"Mute error [{chat_id}]: {e}")
             return False
+
+    async def unmute_stream(self, chat_id: int) -> bool:
+        try:
+            await self.tgcaller.unmute_stream(chat_id)
+            return True
+        except Exception as e:
+            LOGGER(__name__).error(f"Unmute error [{chat_id}]: {e}")
+            return False
+
+    async def stop_stream(self, chat_id: int) -> bool:
+        """Stop playback and leave the voice chat"""
+        try:
+            await self.tgcaller.leave_call(chat_id)
+        except Exception:
+            pass
+
+        if chat_id in db:
+            db[chat_id].clear()
+        if chat_id in active_chats:
+            del active_chats[chat_id]
+
+        return True
+
+    async def leave_call(self, chat_id: int) -> bool:
+        return await self.stop_stream(chat_id)
+
+    # -------------------- Core Streaming --------------------
 
     async def join_call(
         self,
         chat_id: int,
         original_chat_id: int,
         link: str,
-        video: Union[bool, str] = None,
-    ):
-        """Join voice chat and start streaming"""
+        video: Union[bool, str] = False,
+    ) -> bool:
+        """
+        Join voice chat and start playing.
+        `link` can be a direct stream URL or a local file path.
+        """
         try:
-            # TODO: Implement proper join with AudioPiped / VideoPiped
+            # Join the call first
+            await self.tgcaller.join_call(chat_id)
+
+            # Start playing
+            await self.tgcaller.play(chat_id, link)
+
             active_chats[chat_id] = {
                 "playing": True,
                 "original_chat_id": original_chat_id,
                 "stream_type": "video" if video else "audio",
+                "current": link,
             }
             return True
+
         except NoActiveGroupCall:
             LOGGER(__name__).error(f"No active voice chat in {chat_id}")
             return False
         except Exception as e:
-            LOGGER(__name__).error(f"Error joining call in {chat_id}: {e}")
+            LOGGER(__name__).error(f"Join/Play error [{chat_id}]: {e}")
             return False
 
-    async def leave_call(self, chat_id: int):
-        """Leave voice chat"""
+    async def skip_stream(
+        self,
+        chat_id: int,
+        link: str,
+        video: Union[bool, str] = False,
+    ) -> bool:
+        """Skip to a new track (change current stream)"""
         try:
-            await self.tgcaller.leave_group_call(chat_id)
+            # TgCaller play() on already joined call changes the stream
+            await self.tgcaller.play(chat_id, link)
+
             if chat_id in active_chats:
-                del active_chats[chat_id]
+                active_chats[chat_id]["current"] = link
+                active_chats[chat_id]["playing"] = True
+                active_chats[chat_id]["stream_type"] = "video" if video else "audio"
+            else:
+                active_chats[chat_id] = {
+                    "playing": True,
+                    "original_chat_id": chat_id,
+                    "stream_type": "video" if video else "audio",
+                    "current": link,
+                }
             return True
         except Exception as e:
-            LOGGER(__name__).error(f"Error leaving call in {chat_id}: {e}")
+            LOGGER(__name__).error(f"Skip error [{chat_id}]: {e}")
             return False
 
-    async def mute_stream(self, chat_id: int):
-        """Mute the stream"""
-        try:
-            await self.tgcaller.mute_stream(chat_id)
-            return True
-        except Exception as e:
-            LOGGER(__name__).error(f"Error muting stream in {chat_id}: {e}")
-            return False
+    # -------------------- Queue Helpers --------------------
 
-    async def unmute_stream(self, chat_id: int):
-        """Unmute the stream"""
-        try:
-            await self.tgcaller.unmute_stream(chat_id)
-            return True
-        except Exception as e:
-            LOGGER(__name__).error(f"Error unmuting stream in {chat_id}: {e}")
-            return False
+    def get_queue(self, chat_id: int) -> list:
+        return db.get(chat_id, [])
 
-    def get_headers(self) -> Dict[str, str]:
-        """Get headers for streaming"""
-        return {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-        }
+    def add_to_queue(self, chat_id: int, track: dict):
+        if chat_id not in db:
+            db[chat_id] = []
+        db[chat_id].append(track)
+
+    def clear_queue(self, chat_id: int):
+        if chat_id in db:
+            db[chat_id].clear()
+
+    def is_active(self, chat_id: int) -> bool:
+        return chat_id in active_chats
+
+    # -------------------- Event Handlers --------------------
 
     async def decorators(self):
-        """Set up event decorators"""
-
         @self.tgcaller.on_kicked()
         async def on_kicked(_, chat_id: int):
-            LOGGER(__name__).warning(f"Assistant kicked from {chat_id}")
+            LOGGER(__name__).warning(f"Kicked from {chat_id}")
             if chat_id in active_chats:
                 del active_chats[chat_id]
+            if chat_id in db:
+                db[chat_id].clear()
 
         @self.tgcaller.on_closed_voice_chat()
-        async def on_closed_voice_chat(_, chat_id: int):
+        async def on_closed(_, chat_id: int):
             LOGGER(__name__).warning(f"Voice chat closed in {chat_id}")
             if chat_id in active_chats:
                 del active_chats[chat_id]
+            if chat_id in db:
+                db[chat_id].clear()
 
         @self.tgcaller.on_stream_end()
         async def on_stream_end(_, update):
             chat_id = update.chat_id
             LOGGER(__name__).info(f"Stream ended in {chat_id}")
 
-            # Check if there are more tracks in queue
+            # Play next from queue if available
             if chat_id in db and db[chat_id]:
                 next_track = db[chat_id].pop(0)
-                await self.skip_stream(
-                    chat_id, next_track["file"], next_track.get("video", False)
-                )
+                link = next_track.get("file") or next_track.get("url")
+                video = next_track.get("video", False)
+
+                success = await self.skip_stream(chat_id, link, video)
+                if not success:
+                    await self.leave_call(chat_id)
             else:
                 await self.leave_call(chat_id)
 
+    # -------------------- Lifecycle --------------------
+
     async def start(self):
-        """Start TgCaller"""
         await self.tgcaller.start()
-        LOGGER(__name__).info("TgCaller started successfully")
+        LOGGER(__name__).info("TgCaller started")
 
     async def stop(self):
-        """Stop TgCaller"""
-        await self.tgcaller.stop()
+        try:
+            await self.tgcaller.stop()
+        except Exception:
+            pass
         LOGGER(__name__).info("TgCaller stopped")
 
 
-# Create global instance
+# Global instance
 Jhoom = Call()
