@@ -1,74 +1,38 @@
-from dotenv import load_dotenv
-load_dotenv()
+"""
+JhoomMusic package initialization.
+Only creates the bot and userbot clients.
+All other setup is done in main.py
+"""
 
 import sys
-import time
-import logging
 from pyrogram import Client
-from tgcaller import TgCaller
 
 import config
-from .utils.sys import save_bot_start_time
+from .logging import LOGGER
 
-# Save bot start time
-save_bot_start_time()
+# -------------------- Validate required config --------------------
+if not all([config.API_ID, config.API_HASH, config.BOT_TOKEN]):
+    LOGGER(__name__).error("API_ID, API_HASH or BOT_TOKEN is missing in .env")
+    sys.exit(1)
 
-# Configure logging
-logging.basicConfig(
-    format="[%(asctime)s - %(levelname)s] - %(name)s - %(message)s",
-    datefmt="%d-%b-%y %H:%M:%S",
-    handlers=[
-        logging.FileHandler("log.txt"),
-        logging.StreamHandler(),
-    ],
-    level=logging.INFO,
+# -------------------- Main Bot Client --------------------
+app = Client(
+    name="JhoomMusic",
+    api_id=config.API_ID,
+    api_hash=config.API_HASH,
+    bot_token=config.BOT_TOKEN,
 )
 
-logging.getLogger("pyrogram").setLevel(logging.WARNING)
-logging.getLogger("tgcaller").setLevel(logging.WARNING)
-
-LOGGER = logging.getLogger
-
-# Initialize main bot
-if config.API_ID and config.API_HASH and config.BOT_TOKEN:
-    app = Client(
-        "JhoomMusic",
-        api_id=config.API_ID,
-        api_hash=config.API_HASH,
-        bot_token=config.BOT_TOKEN,
-    )
-else:
-    LOGGER(__name__).error("API_ID, API_HASH or BOT_TOKEN not found")
-    sys.exit()
-
-# Initialize userbot
+# -------------------- Userbot / Assistant Client --------------------
 if config.STRING_SESSION:
     userbot = Client(
-        "JhoomMusicAssistant",
+        name="JhoomMusicAssistant",
         api_id=config.API_ID,
         api_hash=config.API_HASH,
         session_string=config.STRING_SESSION,
     )
 else:
     userbot = None
-    LOGGER(__name__).warning("STRING_SESSION not found, userbot disabled")
+    LOGGER(__name__).warning("STRING_SESSION not found → Userbot disabled")
 
-# Import core modules
-from .core.bot import JhoomBot
-from .core.dir import dirr
-from .core.git import git
-from .core.userbot import Userbot
-from .misc import dbb, heroku, sudo, banned_users
-
-# Initialize directories and database
-dirr()
-git()
-dbb()
-heroku()
-sudo()
-banned_users()
-
-# Set bot username
-app.username = config.BOT_USERNAME
-
-LOGGER(__name__).info("JhoomMusic Bot Initialized Successfully")
+LOGGER(__name__).info("JhoomMusic clients created successfully")

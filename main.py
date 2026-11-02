@@ -1,134 +1,124 @@
 #!/usr/bin/env python3
 """
-JhoomMusic Bot - Main Entry Point
-Advanced Telegram Music Bot with Auto-Update System
+JhoomMusic Bot - Clean Entry Point
 """
 
 import asyncio
-import logging
 import sys
-import os
+import importlib
 from pathlib import Path
 
-# Add project root to Python path
-project_root = Path(__file__).parent
-sys.path.insert(0, str(project_root))
+# Ensure project root is in path
+sys.path.insert(0, str(Path(__file__).parent))
 
-# Load environment variables first
 from dotenv import load_dotenv
 load_dotenv()
 
-# Configure logging before importing other modules
-logging.basicConfig(
-    format="[%(asctime)s - %(levelname)s] - %(name)s - %(message)s",
-    datefmt="%d-%b-%y %H:%M:%S",
-    handlers=[
-        logging.FileHandler("log.txt"),
-        logging.StreamHandler(),
-    ],
-    level=logging.INFO,
-)
+from JhoomMusic.logging import LOGGER
+from JhoomMusic import app, userbot
+from JhoomMusic.core.call import Jhoom
+from JhoomMusic.core.dir import dirr
+from JhoomMusic.misc import sudo, dbb, heroku, banned_users
+from JhoomMusic.plugins import ALL_MODULES
+import config
 
-# Suppress noisy loggers
-logging.getLogger("pyrogram").setLevel(logging.WARNING)
-logging.getLogger("pytgcalls").setLevel(logging.WARNING)
-
-LOGGER = logging.getLogger(__name__)
 
 async def main():
-    """Main function to start the bot"""
+    LOGGER(__name__).info("🎵 Starting JhoomMusic Bot...")
+
+    # 1. Create required folders
+    dirr()
+
+    # 2. Initialize helpers
+    dbb()
+    heroku()
+    sudo()
+    banned_users()
+
+    # 3. Start main bot
+    await app.start()
+    me = await app.get_me()
+    app.username = me.username
+    app.id = me.id
+    app.name = me.first_name
+    LOGGER(__name__).info(f"✅ Bot started as @{me.username}")
+
+    # 4. Load all plugins
+    loaded = 0
+    for module in ALL_MODULES:
+        try:
+            importlib.import_module(f"JhoomMusic.plugins.{module}")
+            loaded += 1
+        except Exception as e:
+            LOGGER(__name__).error(f"Failed to load plugin {module}: {e}")
+
+    LOGGER(__name__).info(f"✅ Loaded {loaded}/{len(ALL_MODULES)} plugins")
+
+    # 5. Start userbot (if available)
+    if userbot:
+        try:
+            await userbot.start()
+            LOGGER(__name__).info("✅ Userbot started")
+        except Exception as e:
+            LOGGER(__name__).error(f"Userbot failed to start: {e}")
+    else:
+        LOGGER(__name__).warning("⚠️ Userbot is disabled")
+
+    # 6. Start TgCaller
     try:
-        LOGGER.info("🎵 Starting JhoomMusic Bot...")
-        
-        # Import after logging setup
-        from JhoomMusic import app, userbot
-        from JhoomMusic.core.call import Jhoom
-        from JhoomMusic.misc import sudo
-        from JhoomMusic.plugins import ALL_MODULES
-        import importlib
-        
-        # Initialize sudo users
-        await sudo()
-        LOGGER.info("✅ Sudo users initialized")
-        
-        # Start the main bot
-        await app.start()
-        LOGGER.info("✅ Main bot started")
-        
-        # Import all plugins
-        imported_modules = 0
-        for module in ALL_MODULES:
-            try:
-                importlib.import_module(f"JhoomMusic.plugins.{module}")
-                imported_modules += 1
-            except Exception as e:
-                LOGGER.error(f"❌ Failed to import {module}: {e}")
-        
-        LOGGER.info(f"✅ Successfully imported {imported_modules}/{len(ALL_MODULES)} modules")
-        
-        # Start userbot if available
-        if userbot:
-            try:
-                await userbot.start()
-                LOGGER.info("✅ Userbot started")
-            except Exception as e:
-                LOGGER.error(f"❌ Failed to start userbot: {e}")
-        else:
-            LOGGER.warning("⚠️ Userbot not available")
-        
-        # Start call client
-        try:
-            await Jhoom.start()
-            await Jhoom.decorators()
-            LOGGER.info("✅ Call client started")
-        except Exception as e:
-            LOGGER.error(f"❌ Failed to start call client: {e}")
-        
-        LOGGER.info("🎵 JhoomMusic Bot Started Successfully!")
-        LOGGER.info("✅ Bot is ready to receive commands")
-        
-        # Send startup message to log group
-        try:
-            import config
-            if config.LOG_GROUP_ID:
-                await app.send_message(
-                    config.LOG_GROUP_ID,
-                    "🎵 **JhoomMusic Bot Started Successfully!**\n\n"
-                    f"✅ **Bot:** @{app.username}\n"
-                    f"✅ **Userbot:** {'Connected' if userbot else 'Disabled'}\n"
-                    f"✅ **Plugins:** {imported_modules} loaded\n"
-                    f"✅ **Call Client:** {Jhoom.client if Jhoom.client else 'None'}\n\n"
-                    "**Bot is ready to receive commands!**"
-                )
-        except Exception as e:
-            LOGGER.error(f"Failed to send startup message: {e}")
-        
-        # Keep the bot running
-        await asyncio.Event().wait()
-        
-    except KeyboardInterrupt:
-        LOGGER.info("🛑 Bot stopped by user")
+        await Jhoom.start()
+        await Jhoom.decorators()
+        LOGGER(__name__).info("✅ TgCaller started")
     except Exception as e:
-        LOGGER.error(f"❌ Error starting bot: {e}")
-        sys.exit(1)
-    finally:
-        # Cleanup
+        LOGGER(__name__).error(f"TgCaller failed: {e}")
+
+    # 7. Notify log group
+    if config.LOG_GROUP_ID:
         try:
-            if 'Jhoom' in locals():
-                await Jhoom.stop()
-            if 'userbot' in locals() and userbot:
-                await userbot.stop()
-            if 'app' in locals():
-                await app.stop()
-            LOGGER.info("✅ Bot stopped gracefully")
+            await app.send_message(
+                config.LOG_GROUP_ID,
+                f"🎵 **JhoomMusic Started**\n\n"
+                f"• Bot: @{app.username}\n"
+                f"• Userbot: {'Active' if userbot else 'Disabled'}\n"
+                f"• Plugins: {loaded}\n"
+                f"• Status: Ready"
+            )
         except Exception as e:
-            LOGGER.error(f"Error during cleanup: {e}")
+            LOGGER(__name__).warning(f"Could not send startup message: {e}")
+
+    LOGGER(__name__).info("🎵 JhoomMusic is now running!")
+
+    # Keep alive
+    await asyncio.Event().wait()
+
+
+async def stop():
+    """Graceful shutdown"""
+    try:
+        await Jhoom.stop()
+    except Exception:
+        pass
+    if userbot:
+        try:
+            await userbot.stop()
+        except Exception:
+            pass
+    try:
+        await app.stop()
+    except Exception:
+        pass
+    LOGGER(__name__).info("Bot stopped")
+
 
 if __name__ == "__main__":
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
-        print("\n🛑 Bot stopped by user")
+        LOGGER(__name__).info("Stopped by user")
+        try:
+            asyncio.run(stop())
+        except Exception:
+            pass
     except Exception as e:
-        print(f"❌ Fatal error: {e}")
+        LOGGER(__name__).error(f"Fatal error: {e}")
         sys.exit(1)
