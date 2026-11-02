@@ -1,73 +1,51 @@
 import os
-getenv = os.getenv
-import os
 from dotenv import load_dotenv
+
 load_dotenv()
-DURATION_LIMIT = int(os.getenv("DURATION_LIMIT", "60"))
-DURATION_LIMIT_MIN = int(DURATION_LIMIT // 60)
-PING_IMG_URL = os.getenv("PING_IMG_URL", "https://telegra.ph/file/68e5f6e5b3d5c719b634d.jpg")
-BANNED_USERS = set()
-SUPPORT_CHANNEL = os.getenv("SUPPORT_CHANNEL", "https://t.me/JhoomMusicChannel")
-SUPPORT_CHANNEL = os.getenv("SUPPORT_CHANNEL", "https://t.me/JhoomMusicChannel")
+
+# ====================== REQUIRED ======================
+API_ID = int(os.getenv("API_ID", "0"))
+API_HASH = os.getenv("API_HASH", "")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "")
+STRING_SESSION = os.getenv("STRING_SESSION", None)
+
+# ====================== OWNER / SUDO ==================
+OWNER_ID = [int(x) for x in os.getenv("OWNER_ID", "0").split() if x.isdigit()]
+SUDO_USERS = [int(x) for x in os.getenv("SUDO_USERS", "").split() if x.isdigit()]
+
+# ====================== BOT SETTINGS ==================
+BOT_NAME = os.getenv("BOT_NAME", "JhoomMusic")
+BOT_USERNAME = os.getenv("BOT_USERNAME", "")
+LOG_GROUP_ID = int(os.getenv("LOG_GROUP_ID", "0"))
+
+# ====================== SUPPORT =======================
 SUPPORT_CHAT = os.getenv("SUPPORT_CHAT", "https://t.me/JhoomMusicSupport")
-Support_CHAT = os.getenv("SUPPORT_CHAT", "https://t.me/JhoomMusicSupport")
-BOT_NAME = os.getenv("BOT_NAME", "JhoomMusic")
-BOT_NAME = os.getenv("BOT_NAME", "JhoomMusic")
-START_IMG_URL = os.getenv("START_IMG_URL", "https://telegra.ph/file/68e5f6e5b3d5c719b634d.jpg")
-load_dotenv()
-DURATION_LIMIT = int(os.getenv("DURATION_LIMIT", "60"))
-DURATION_LIMIT_MIN = int(DURATION_LIMIT // 60)
-PING_IMG_URL = os.getenv("PING_IMG_URL", "https://telegra.ph/file/68e5f6e5b3d5c719b634d.jpg")
-BANNED_USERS = set()
 SUPPORT_CHANNEL = os.getenv("SUPPORT_CHANNEL", "https://t.me/JhoomMusicChannel")
-SUPPORT_CHANNEL = os.getenv("SUPPORT_CHANNEL", "https://t.me/JhoomMusicChannel")
-SUPPORT_CHAT = os.getenv("SUPPORT_CHAT", "https://t.me/JhoomMusicSupport")
-Support_CHAT = os.getenv("SUPPORT_CHAT", "https://t.me/JhoomMusicSupport")
-BOT_NAME = os.getenv("BOT_NAME", "JhoomMusic")
-BOT_NAME = os.getenv("BOT_NAME", "JhoomMusic")
-START_IMG_URL = os.getenv("START_IMG_URL", "https://telegra.ph/file/68e5f6e5b3d5c719b634d.jpg")
-from pyrogram import Client
 
-api_id = 123456
-api_hash = 'your_api_hash_here'
-session_name = 'jhoom_bot'
+# ====================== MUSIC LIMITS ==================
+DURATION_LIMIT = int(os.getenv("DURATION_LIMIT", "60"))          # minutes
+DURATION_LIMIT_MIN = DURATION_LIMIT
+SONG_DOWNLOAD_DURATION = int(os.getenv("SONG_DOWNLOAD_DURATION", "180"))
+VIDEO_STREAM_LIMIT = int(os.getenv("VIDEO_STREAM_LIMIT", "3"))
+SERVER_PLAYLIST_LIMIT = int(os.getenv("SERVER_PLAYLIST_LIMIT", "30"))
+PLAYLIST_FETCH_LIMIT = int(os.getenv("PLAYLIST_FETCH_LIMIT", "25"))
 
-app = Client(session_name, api_id=api_id, api_hash=api_hash)
-userbot = None
+# ====================== AUTO LEAVE ====================
+AUTO_LEAVING_ASSISTANT = os.getenv("AUTO_LEAVING_ASSISTANT", "True").lower() == "true"
+AUTO_LEAVE_ASSISTANT_TIME = int(os.getenv("AUTO_LEAVE_ASSISTANT_TIME", "5400"))
 
+# ====================== DATABASE ======================
+MONGO_DB_URI = os.getenv("MONGO_DB_URI", "")
 
-# Owner and Sudo Config
-OWNER_ID = [123456789]
-SUDO_USERS = [123456789]
+# ====================== OPTIONAL ======================
+GITHUB_REPO = os.getenv("GITHUB_REPO", "https://github.com/jhoommusic/Jhoommusic")
+GIT_TOKEN = os.getenv("GIT_TOKEN", "")
+HEROKU_API_KEY = os.getenv("HEROKU_API_KEY", "")
+HEROKU_APP_NAME = os.getenv("HEROKU_APP_NAME", "")
 
-# Required API Credentials
-API_ID = 123456
-API_HASH = 'your_api_hash_here'
-BOT_TOKEN = 'your_bot_token_here'
+# ====================== IMAGES ========================
+PING_IMG_URL = os.getenv("PING_IMG_URL", "https://telegra.ph/file/60752df1ea8f6d24909f7.jpg")
+START_IMG_URL = os.getenv("START_IMG_URL", "https://telegra.ph/file/60752df1ea8f6d24909f7.jpg")
 
-# Optional String Session
-STRING_SESSION = None
-
-# GitHub Repo Link
-GITHUB_REPO = 'https://github.com/jhoommusic/Jhoommusic'
-
-# GitHub Token (optional, for public repo keep it blank)
-GIT_TOKEN = ''
-
-# Heroku Config (optional)
-HEROKU_API_KEY = ''
-HEROKU_APP_NAME = ''
-
-# Banned Users List
+# ====================== RUNTIME =======================
 BANNED_USERS = []
-
-# Bot Username
-BOT_USERNAME = 'your_bot_username_here'
-DURATION_LIMIT_MIN = int(getenv('DURATION_LIMIT', '60'))
-
-# Additional Configs
-PING_IMG_URL = getenv("PING_IMG_URL", "https://telegra.ph/file/60752df1ea8f6d24909f7.jpg")
-START_IMG_URL = getenv("START_IMG_URL", "https://telegra.ph/file/60752df1ea8f6d24909f7.jpg")
-BOT_NAME = getenv("BOT_NAME", "JhoomMusic")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/JhoomMusicSupport")
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/JhoomMusicChannel")

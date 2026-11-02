@@ -1,11 +1,36 @@
-node_modules/
+# Environment & secrets
 .env
+*.session
+*.session-journal
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
 venv/
-venv/
+env/
+ENV/
 publish-env/
 
-__pycache__/
-*.pyc
+# Logs & runtime
 log.txt
-database_backup.py
+*.log
 bot_start_time.txt
+database_backup.py
+
+# Downloads & cache
+downloads/
+cache/
+raw_files/
+
+# IDE & OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Node (if any)
+node_modules/

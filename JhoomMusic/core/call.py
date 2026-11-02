@@ -4,32 +4,26 @@ from typing import Union, Dict, Optional
 from pyrogram import Client
 from pyrogram.types import Message
 from tgcaller import TgCaller
-# from tgcaller.types.media_stream import AudioPiped, VideoPiped
 from tgcaller.types.input_stream.quality import (
     HighQualityAudio,
     HighQualityVideo,
     MediumQualityVideo,
 )
-
 from tgcaller.exceptions import NoActiveGroupCall
 
-# ---- FIX START ----
-# Instead of config.userbot/config.app, import real Client instances
 from JhoomMusic import app, userbot
-# ---- FIX END ----
 from ..logging import LOGGER
 
 # Global variables for queue management
 db = {}
 active_chats = {}
 
+
 class Call:
     def __init__(self):
-        # ---- FIX START ----
-        # Remove cache_duration argument (not accepted), and use real Client object
-        self.tgcaller = TgCaller(userbot if userbot else app)
-        # ---- FIX END ----
-        self.tgcaller = TgCaller(config.userbot if config.userbot else config.app)
+        # Use userbot if available, otherwise fall back to bot
+        client = userbot if userbot else app
+        self.tgcaller = TgCaller(client)
 
     async def pause_stream(self, chat_id: int):
         """Pause the current stream"""
@@ -65,20 +59,8 @@ class Call:
     async def skip_stream(self, chat_id: int, link: str, video: Union[bool, str] = None):
         """Skip to next track"""
         try:
-            # Uncomment and implement the correct stream construction for your project
-            # if video:
-            #     stream = VideoPiped(
-            #         link,
-            #         HighQualityVideo(),
-            #         headers=self.get_headers(),
-            #     )
-            # else:
-            #     stream = AudioPiped(
-            #         link,
-            #         HighQualityAudio(),
-            #         headers=self.get_headers()
-            #     )
-            # await self.tgcaller.change_stream(chat_id, stream)
+            # TODO: Implement proper stream change with AudioPiped / VideoPiped
+            # once tgcaller stream types are confirmed for this version
             return True
         except Exception as e:
             LOGGER(__name__).error(f"Error skipping stream in {chat_id}: {e}")
@@ -93,27 +75,11 @@ class Call:
     ):
         """Join voice chat and start streaming"""
         try:
-            # Uncomment and implement the correct stream construction for your project
-            # if video:
-            #     stream = VideoPiped(
-            #         link,
-            #         HighQualityVideo(),
-            #         headers=self.get_headers(),
-            #     )
-            # else:
-            #     stream = AudioPiped(
-            #         link,
-            #         HighQualityAudio(),
-            #         headers=self.get_headers()
-            #     )
-            # await self.tgcaller.join_group_call(
-            #     chat_id,
-            #     stream,
-            # )
+            # TODO: Implement proper join with AudioPiped / VideoPiped
             active_chats[chat_id] = {
                 "playing": True,
                 "original_chat_id": original_chat_id,
-                "stream_type": "video" if video else "audio"
+                "stream_type": "video" if video else "audio",
             }
             return True
         except NoActiveGroupCall:
@@ -160,6 +126,7 @@ class Call:
 
     async def decorators(self):
         """Set up event decorators"""
+
         @self.tgcaller.on_kicked()
         async def on_kicked(_, chat_id: int):
             LOGGER(__name__).warning(f"Assistant kicked from {chat_id}")
@@ -176,18 +143,14 @@ class Call:
         async def on_stream_end(_, update):
             chat_id = update.chat_id
             LOGGER(__name__).info(f"Stream ended in {chat_id}")
-            
+
             # Check if there are more tracks in queue
             if chat_id in db and db[chat_id]:
-                # Play next track
                 next_track = db[chat_id].pop(0)
                 await self.skip_stream(
-                    chat_id, 
-                    next_track["file"], 
-                    next_track.get("video", False)
+                    chat_id, next_track["file"], next_track.get("video", False)
                 )
             else:
-                # No more tracks, leave call
                 await self.leave_call(chat_id)
 
     async def start(self):
@@ -199,6 +162,7 @@ class Call:
         """Stop TgCaller"""
         await self.tgcaller.stop()
         LOGGER(__name__).info("TgCaller stopped")
+
 
 # Create global instance
 Jhoom = Call()
